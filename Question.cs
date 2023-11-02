@@ -1,5 +1,4 @@
-﻿
-[Serializable]
+﻿[Serializable]
 public class Question
 {
     public string Query { get; set; }
