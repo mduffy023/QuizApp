@@ -1,5 +1,5 @@
 ﻿[Serializable]
-public class Quiz : FileOperations
+public class Quiz 
 {
     public const int ChoiceLimit = 3; 
 
