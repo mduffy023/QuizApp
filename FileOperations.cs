@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 
 public class FileOperations
 {
+    //class needss to be refactored outdate method of Serialize
     public void SaveToFile(string path)
     {
         IFormatter formatter = new BinaryFormatter();
