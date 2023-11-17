@@ -20,9 +20,32 @@
             //case 4 load quiz 
             //case 5 quit
             //default will display error when choice is not bewtween 1 - 5 
-            while (true)
+            bool isRunning = true;
+            while (isRunning)
             {
+                int choice = QuizUI.DisplayMenu();
 
+                switch(choice)
+                {
+                    case 1:
+                        // add question logic 
+                        break;
+                    case 2:
+                        // play quiz logic 
+                        break; 
+                    case 3:
+                        // save quiz logic
+                        break;
+                    case 4:
+                        // load quiz logic 
+                        break;
+                    case 5:
+                    isRunning = false;
+                    break;
+                        default:
+                        // invaild choice handler 
+                        break;
+                }
             }
         }
     }
