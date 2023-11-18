@@ -1,4 +1,4 @@
-﻿public  class QuizUI
+﻿public  class UIMethods
 {
     public const int choiceLimit = 4;
     public static void DisplayIntro()

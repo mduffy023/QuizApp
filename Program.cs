@@ -7,15 +7,15 @@
 
             Quiz quiz = new Quiz();
             FileOperations fileOperations = new FileOperations();
-            QuizLogic quizLogic = new QuizLogic(quiz, fileOperations);
-            QuizUI ui = new QuizUI();
+            Logic quizLogic = new Logic(quiz, fileOperations);
+            UIMethods ui = new UIMethods();
 
-            QuizUI.DisplayIntro();
+            UIMethods.DisplayIntro();
 
             bool isRunning = true;
             while (isRunning)
             {
-                int choice = QuizUI.DisplayMenu();
+                int choice = UIMethods.DisplayMenu();
 
                 switch(choice)
                 {
