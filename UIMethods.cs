@@ -1,4 +1,4 @@
-﻿public  class UIMethods
+﻿public class UIMethods
 {
     public const int choiceLimit = 4;
     public static void DisplayIntro()
@@ -27,7 +27,7 @@
         for (int i = 0; i < choiceLimit; i++)
         {
             Console.WriteLine($"Enter Choice {i + 1}");
-            userChoices.Add( Console.ReadLine());
+            userChoices.Add(Console.ReadLine());
         }
 
         Console.WriteLine("enter the Correct answeer, separet by comm, if multiple: ");
@@ -35,4 +35,11 @@
 
         return new Question(usersQuestion, userChoices, correctAnwers);
     }
+
+    public void GetAllQuestions()
+    {
+
+    }
+
+ 
 }

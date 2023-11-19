@@ -35,5 +35,10 @@
         }
     }
 
+    public List<Question> GetAllQuestions()
+    {
+        return quiz.Questions;
+    }
+
 
 }
