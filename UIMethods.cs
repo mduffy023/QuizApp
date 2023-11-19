@@ -1,11 +1,31 @@
 ﻿public class UIMethods
 {
+
+    private Logic logic;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="logic"></param>
+    public UIMethods(Logic logic)
+    {
+        this.logic = logic;
+    }
+
     public const int choiceLimit = 4;
+
+    /// <summary>
+    /// 
+    /// </summary>
     public static void DisplayIntro()
     {
         Console.WriteLine("Welcome to the Quiz Maker! ");
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     public static int DisplayMenu()
     {
         Console.WriteLine("Main Menu");
@@ -17,7 +37,11 @@
         Console.WriteLine("0.");
         return int.Parse(Console.ReadLine());
     }
-
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     public static Question GetNewQuestion()
     {
         Console.WriteLine("Enter the Question:");
@@ -36,10 +60,32 @@
         return new Question(usersQuestion, userChoices, correctAnwers);
     }
 
-    public void GetAllQuestions()
+    /// <summary>
+    /// 
+    /// </summary>
+    public void RemoveQuestionFromQuiz()
     {
+        GetAllQuizQuestions();
+        Console.WriteLine("Enter the index of the question you would like to get rid of?");
+        int index = int.Parse(Console.ReadLine());
+
+        logic.RemoveQuestion(index);
 
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void GetAllQuizQuestions()
+    {
+       List<Question> questions = logic.GetAllQuestions();
+        foreach(Question question in questions)
+        {
+            Console.WriteLine(question.Query);
+        }
+    }
+
+  
 
  
 }

@@ -7,7 +7,9 @@
 
             Quiz quiz = new Quiz();
             FileOperations fileOperations = new FileOperations();
-            UIMethods ui = new UIMethods();
+            Logic logic = new Logic(quiz);
+            UIMethods uiMethods = new UIMethods(logic);
+
 
             UIMethods.DisplayIntro();
 
