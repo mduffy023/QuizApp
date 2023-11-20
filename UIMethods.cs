@@ -54,7 +54,7 @@
             userChoices.Add(Console.ReadLine());
         }
 
-        Console.WriteLine("enter the Correct answeer, separet by comm, if multiple: ");
+        Console.WriteLine("enter the Correct answer, separet by comma, if multiple: ");
         List<string> correctAnwers = Console.ReadLine().Split(',').Select(a => a.Trim()).ToList();
 
         return new Question(usersQuestion, userChoices, correctAnwers);
