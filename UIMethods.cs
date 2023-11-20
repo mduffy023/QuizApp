@@ -30,11 +30,11 @@
     {
         Console.WriteLine("Main Menu");
         Console.WriteLine("1. Add a New Question");
-        Console.WriteLine("2. Delete a Question");
-        Console.WriteLine("3. Play Quiz");
-        Console.WriteLine("4. Save the quiz");
-        Console.WriteLine("5.");
-        Console.WriteLine("0.");
+        Console.WriteLine("2. Play Quiz");
+        Console.WriteLine("3. Save the quiz");
+        Console.WriteLine("4. Load the Quiz");
+        Console.WriteLine("5. Reomve A question");
+        Console.WriteLine("6. Exit");
         return int.Parse(Console.ReadLine());
     }
     

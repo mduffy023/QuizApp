@@ -1,4 +1,6 @@
-﻿namespace QuizApp
+﻿using static Menu;
+
+namespace QuizApp
 {
     internal class Program
     {
@@ -18,24 +20,29 @@
             {
                 int choice = UIMethods.DisplayMenu();
 
-                switch(choice)
+                MenuOptions menuOptions = (MenuOptions)choice;
+
+                switch (menuOptions)
                 {
-                    case 1:
+                    case MenuOptions.ADDQUESTION:
                         // add question logic 
                         break;
-                    case 2:
+                    case MenuOptions.PLAYQUIZ:
                         // play quiz logic 
                         break; 
-                    case 3:
+                    case MenuOptions.SAVEQUIZ:
                         // save quiz logic
                         break;
-                    case 4:
+                    case MenuOptions.LOADQUIZ:
                         // load quiz logic 
                         break;
-                    case 5:
-                    isRunning = false;
+                    case MenuOptions.REMOVEQUESTION:
+                        //remove question logic
                     break;
-                        default:
+                        case MenuOptions.EXIT:
+                        isRunning = false;
+                        break;
+                    default:
                         // invaild choice handler 
                         break;
                 }
