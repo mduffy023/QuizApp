@@ -63,14 +63,12 @@
     /// <summary>
     /// 
     /// </summary>
-    public void RemoveQuestionFromQuiz()
+    public int RemoveQuestionFromQuiz()
     {
         GetAllQuizQuestions();
         Console.WriteLine("Enter the index of the question you would like to get rid of?");
         int index = int.Parse(Console.ReadLine());
-
-        logic.RemoveQuestion(index);
-
+        return index;
     }
 
     /// <summary>
@@ -84,8 +82,4 @@
             Console.WriteLine(question.Query);
         }
     }
-
-  
-
- 
 }

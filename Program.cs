@@ -37,10 +37,14 @@ namespace QuizApp
                         break;
                     case MenuOptions.LOADQUIZ:
                         // load quiz logic 
+                       
                         break;
                     case MenuOptions.REMOVEQUESTION:
                         //remove question logic
-                    break;
+                        uiMethods.GetAllQuizQuestions();
+                        int indexToDelete = uiMethods.RemoveQuestionFromQuiz();
+                        logic.RemoveQuestion(indexToDelete);
+                        break;
                         case MenuOptions.EXIT:
                         isRunning = false;
                         break;
