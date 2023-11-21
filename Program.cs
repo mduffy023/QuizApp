@@ -26,6 +26,8 @@ namespace QuizApp
                 {
                     case MenuOptions.ADDQUESTION:
                         // add question logic 
+                       Question newQestion =  UIMethods.GetNewQuestion();
+                        logic.AddQuestion(newQestion);
                         break;
                     case MenuOptions.PLAYQUIZ:
                         // play quiz logic 
