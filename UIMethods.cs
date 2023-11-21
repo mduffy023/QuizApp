@@ -66,9 +66,20 @@
     public int RemoveQuestionFromQuiz()
     {
         GetAllQuizQuestions();
-        Console.WriteLine("Enter the index of the question you would like to get rid of?");
-        int index = int.Parse(Console.ReadLine());
-        return index;
+        while (true)
+        {
+            Console.WriteLine("Enter the index of the question you would like to get rid of?");
+            int index;
+            bool isNumber = int.TryParse(Console.ReadLine(), out index);
+            if (isNumber && index >= 0 && index < logic.GetAllQuestions().Count)
+            {
+                return index;
+            }
+            else
+            {
+                Console.WriteLine("Invalid index. Please enter a number within the specified range.");
+            }
+        }
     }
 
     /// <summary>

@@ -12,7 +12,6 @@ namespace QuizApp
             Logic logic = new Logic(quiz);
             UIMethods uiMethods = new UIMethods(logic);
 
-
             UIMethods.DisplayIntro();
 
             bool isRunning = true;
