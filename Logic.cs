@@ -1,8 +1,10 @@
-﻿public class Logic
+﻿using System.ComponentModel;
+
+public class Logic
 {
 
     private Quiz quiz;
-    private int score; 
+    private int score;
 
     /// <summary>
     /// 
@@ -10,8 +12,8 @@
     /// <param name="start"></param>
     public Logic(Quiz start)
     {
-       quiz = start;
-       score = 0;
+        quiz = start;
+        score = 0;
     }
 
     /// <summary>
@@ -41,4 +43,24 @@
     }
 
 
+    public void PlayQuiz(Quiz quiz)
+    {
+      int score = 0;
+
+        foreach(Question question in quiz.Questions)
+        {
+            Console.WriteLine(question);
+            Console.WriteLine("enter your answer: ");
+            string userAnswer = Console.ReadLine();
+            if (question.Answers.Contains(userAnswer))
+            {
+                Console.WriteLine("that is correct!");
+                score++;
+            }
+            else
+            {
+                Console.WriteLine($"incorrect the Answer is {question.Answers}");
+            }
+        }     
+    }
 }
