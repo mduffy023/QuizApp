@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Security.AccessControl;
 
 public class Logic
 {
@@ -62,5 +63,9 @@ public class Logic
                 Console.WriteLine($"incorrect the Answer is {question.Answers}");
             }
         }     
+    }
+    public void DisplayScore(int score)
+    {
+        Console.WriteLine($"Total Score: {score}");
     }
 }

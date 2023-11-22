@@ -1,6 +1,8 @@
-﻿public class UIMethods
-{
+﻿using System.Linq;
 
+public class UIMethods
+{
+    public const int CHOICELIMIT = 4;
     private Logic logic;
 
     /// <summary>
@@ -11,8 +13,6 @@
     {
         this.logic = logic;
     }
-
-    public const int choiceLimit = 4;
 
     /// <summary>
     /// 
@@ -48,7 +48,7 @@
         string usersQuestion = Console.ReadLine();
 
         List<string> userChoices = new List<string>();
-        for (int i = 0; i < choiceLimit; i++)
+        for (int i = 0; i < CHOICELIMIT; i++)
         {
             Console.WriteLine($"Enter Choice {i + 1}");
             userChoices.Add(Console.ReadLine());
@@ -91,6 +91,35 @@
         foreach(Question question in questions)
         {
             Console.WriteLine(question.Query);
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="logic"></param>
+    /// <param name="quiz"></param>
+    public void StartQuiz(Logic logic, Quiz quiz)
+    {
+        logic.PlayQuiz(quiz);
+        
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="question"></param>
+    public void GetUserAnswer(Question question)
+    {
+        Console.WriteLine(question.Query);
+
+        foreach(string chocie in question.Choices)
+        {
+            Console.WriteLine(chocie);
+
+            Console.WriteLine("pick you choices. if more than one separat with , ");
+            List<string> userChocies = new List<string>();
+            userChocies = Console.ReadLine().Split (',').Select(chocie => chocie.Trim()).ToList();
         }
     }
 }
