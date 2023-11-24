@@ -122,4 +122,77 @@ public class UIMethods
             userChocies = Console.ReadLine().Split (',').Select(chocie => chocie.Trim()).ToList();
         }
     }
+
+    public void SaveQuizPrompt()
+    {
+
+        string userPromt = "";
+        bool answer = false;
+        Console.WriteLine("would you like to save quiz? Yes or No?");
+        userPromt = Console.ReadLine();
+        do
+        {
+            switch (userPromt)
+            {
+                case "yes":
+                    answer = true;
+                    break;
+                case "no":
+                    answer = false;
+                    break;
+                default:
+                    Console.WriteLine("can only answer with Yes or No");
+                    userPromt = "";
+                    break;
+            }
+        }
+        while (userPromt == "");
+        
+
+        if (answer)
+        {
+            Console.WriteLine("quiz has been saved");
+            logic.SaveQuiz();
+        }
+        else
+        {
+            Console.WriteLine("Okay quiz wont be saved");
+        }
+    }
+
+    public void LoadQuizPrompt()
+    {
+        string userPromt = "";
+        bool answer = false;
+        Console.WriteLine("would you like to save quiz? Yes or No?");
+        userPromt = Console.ReadLine();
+        do
+        {
+            switch (userPromt)
+            {
+                case "yes":
+                    answer = true;
+                    break;
+                case "no":
+                    answer = false;
+                    break;
+                default:
+                    Console.WriteLine("can only answer with Yes or No");
+                    userPromt = "";
+                    break;
+            }
+        }
+        while (userPromt == "");
+
+
+        if (answer)
+        {
+            Console.WriteLine("quiz has been loaded");
+            logic.LoadQuiz();
+        }
+        else
+        {
+            Console.WriteLine(" quiz have not been loaded");
+        }
+    }
 }

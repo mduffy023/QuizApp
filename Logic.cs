@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel;
+using System.IO;
+using System.IO.Enumeration;
 using System.Security.AccessControl;
 
 public class Logic
@@ -6,6 +8,7 @@ public class Logic
 
     private Quiz quiz;
     private int score;
+    private FileOperations fileOperations;
 
     /// <summary>
     /// 
@@ -67,5 +70,17 @@ public class Logic
     public void DisplayScore(int score)
     {
         Console.WriteLine($"Total Score: {score}");
+    }
+
+    //will call SaveQuiz(string path) in FileOperations Class
+    public void SaveQuiz()
+    {
+        //fileOperations.SaveQuiz();
+    }
+
+    //will call SaveQuiz(string path) in FileOperations Class
+    public void LoadQuiz()
+    {
+        //fileOperations.LoadQuiz();
     }
 }
