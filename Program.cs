@@ -30,9 +30,12 @@ namespace QuizApp
                         break;
                     case MenuOptions.PLAYQUIZ:
                         // play quiz logic 
+                        Quiz myQuiz = new Quiz();
+                        UIMethods.PlayQuiz(myQuiz);
                         break; 
                     case MenuOptions.SAVEQUIZ:
                         // save quiz logic
+
                         break;
                     case MenuOptions.LOADQUIZ:
                         // load quiz logic 

@@ -94,15 +94,25 @@ public class UIMethods
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="logic"></param>
-    /// <param name="quiz"></param>
-    public void StartQuiz(Logic logic, Quiz quiz)
+    public static void PlayQuiz(Quiz quiz)
     {
-        logic.PlayQuiz(quiz);
-        
+        int score = 0;
+
+        foreach (Question question in quiz.Questions)
+        {
+            Console.WriteLine(question);
+            Console.WriteLine("enter your answer: ");
+            string userAnswer = Console.ReadLine();
+            if (question.Answers.Contains(userAnswer))
+            {
+                Console.WriteLine("that is correct!");
+                score++;
+            }
+            else
+            {
+                Console.WriteLine($"incorrect the Answer is {question.Answers}");
+            }
+        }
     }
 
     /// <summary>
@@ -147,12 +157,13 @@ public class UIMethods
             }
         }
         while (userPromt == "");
-        
-
+    
         if (answer)
         {
+            Console.WriteLine("Enter the file path for saving the quiz:");
+            string filePath = Console.ReadLine();
             Console.WriteLine("quiz has been saved");
-            logic.SaveQuiz();
+            logic.SaveQuiz(filePath);
         }
         else
         {
@@ -164,7 +175,7 @@ public class UIMethods
     {
         string userPromt = "";
         bool answer = false;
-        Console.WriteLine("would you like to save quiz? Yes or No?");
+        Console.WriteLine("would you like to load quiz? Yes or No?");
         userPromt = Console.ReadLine();
         do
         {
@@ -184,9 +195,10 @@ public class UIMethods
         }
         while (userPromt == "");
 
-
         if (answer)
         {
+            Console.WriteLine("Enter the file path for loading the quiz:");
+            string filePath = Console.ReadLine();
             Console.WriteLine("quiz has been loaded");
             logic.LoadQuiz();
         }

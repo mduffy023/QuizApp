@@ -46,36 +46,15 @@ public class Logic
         return quiz.Questions;
     }
 
-
-    public void PlayQuiz(Quiz quiz)
-    {
-      int score = 0;
-
-        foreach(Question question in quiz.Questions)
-        {
-            Console.WriteLine(question);
-            Console.WriteLine("enter your answer: ");
-            string userAnswer = Console.ReadLine();
-            if (question.Answers.Contains(userAnswer))
-            {
-                Console.WriteLine("that is correct!");
-                score++;
-            }
-            else
-            {
-                Console.WriteLine($"incorrect the Answer is {question.Answers}");
-            }
-        }     
-    }
     public void DisplayScore(int score)
     {
         Console.WriteLine($"Total Score: {score}");
     }
 
     //will call SaveQuiz(string path) in FileOperations Class
-    public void SaveQuiz()
+    public void SaveQuiz(string filePath)
     {
-        //fileOperations.SaveQuiz();
+        fileOperations.SaveQuiz(quiz, filePath);
     }
 
     //will call SaveQuiz(string path) in FileOperations Class
