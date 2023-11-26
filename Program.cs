@@ -27,11 +27,13 @@ namespace QuizApp
                         // add question logic 
                        Question newQestion =  UIMethods.GetNewQuestion();
                         logic.AddQuestion(newQestion);
+                        Console.Clear();
                         break;
                     case MenuOptions.PLAYQUIZ:
                         // play quiz logic 
                         Quiz myQuiz = new Quiz();
                         UIMethods.PlayQuiz(myQuiz);
+                        Console.Clear();
                         break; 
                     case MenuOptions.SAVEQUIZ:
                         // save quiz logic
@@ -49,6 +51,7 @@ namespace QuizApp
                         break;
                         case MenuOptions.EXIT:
                         isRunning = false;
+                        Console.Clear();
                         break;
                     default:
                         // invaild choice handler 
