@@ -118,10 +118,7 @@ public class UIMethods
     }
 
     /// <summary>
-    /// 
-    ///  added feature to be added  
-    /// -----------------------------
-    /// 
+    ///  gets all qustions
     /// </summary>
     public void GetAllQuizQuestions()
     {
@@ -133,12 +130,15 @@ public class UIMethods
     }
 
     /// <summary>
-    ///  
+    ///  method used to play the quiz 
+    ///  get each question and displays 
+    ///  it to the user for them to 
+    ///  answer 
     ///  added feature to be added  
     /// -----------------------------
     /// 
     /// </summary>
-    /// <param name="quiz"></param>
+    /// <param name="quiz">get the quiz that is loaded</param>
     public static void PlayQuiz(Quiz quiz)
     {
         int score = 0;
@@ -161,13 +161,13 @@ public class UIMethods
     }
 
     /// <summary>
-    /// 
+    /// gets the users choice for the question 
     ///  added feature to be added  
     /// -----------------------------
     /// 
     /// </summary>
-    /// <param name="question"></param>
-    public void GetUserAnswer(Question question)
+    /// <param name="question">choice of the question</param>
+    public void GetUserChoices(Question question)
     {
         Console.WriteLine(question.Query);
 
