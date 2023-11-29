@@ -28,7 +28,7 @@ public class UIMethods
     /// displays a menu for the user 
     /// that can be inracted with 
     /// by enter a integer when prompted
-    /// added feature to be added  
+    /// feature to be added  
     /// -----------------------------
     /// need to add a way that handles 
     /// wrong input type could use a TryParse 
@@ -53,7 +53,7 @@ public class UIMethods
     /// allows the user to make a new question
     /// will ask them the question they like to enter 
     /// the choice and the correct answer can be more than one
-    ///  added feature to be added  
+    ///  feature to be added  
     /// -----------------------------
     /// need to impelment some data handleing 
     /// so if a question has been written then it 
@@ -86,7 +86,7 @@ public class UIMethods
     ///  user removes the question by enter the index
     ///  if there are no question then a message will prompt 
     ///  the user to let them now
-    ///  added feature to be added  
+    ///  feature to be added  
     /// -----------------------------
     /// should add a display to show the index of each qustion#
     /// for the user to make it more readable
@@ -132,9 +132,8 @@ public class UIMethods
     /// <summary>
     ///  method used to play the quiz 
     ///  get each question and displays 
-    ///  it to the user for them to 
-    ///  answer 
-    ///  added feature to be added  
+    ///  it to the user for them to answer 
+    ///   features to be added  
     /// -----------------------------
     /// 
     /// </summary>
@@ -162,7 +161,7 @@ public class UIMethods
 
     /// <summary>
     /// gets the users choice for the question 
-    ///  added feature to be added  
+    ///   features to be added  
     /// -----------------------------
     /// 
     /// </summary>
@@ -183,8 +182,9 @@ public class UIMethods
 
 
     /// <summary>
-    /// 
-    ///  added feature to be added  
+    /// Prompts the user to decide whether to save a quiz 
+    /// and handles the saving process.
+    /// features to be added  
     /// -----------------------------
     /// 
     /// </summary>
@@ -227,8 +227,9 @@ public class UIMethods
     }
 
     /// <summary>
-    /// 
-    ///  added feature to be added  
+    /// Prompts the user to decide whether to load 
+    /// a quiz and handles the loading process.
+    ///  features to be added  
     /// -----------------------------
     /// 
     /// </summary>

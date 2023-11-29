@@ -1,6 +1,9 @@
 ﻿public class Menu
 {
-	public enum MenuOptions
+    /// <summary>
+    /// Enumerates the different options available in the quiz menu.
+    /// </summary>
+    public enum MenuOptions
 	{
 		ADDQUESTION = 1,
 		PLAYQUIZ = 2,

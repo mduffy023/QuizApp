@@ -5,10 +5,10 @@ using System.Xml.Serialization;
 public class FileOperations
 {
     /// <summary>
-    /// 
+    /// Serializes a Quiz object into an XML format and saves it to the specified file path.
     /// </summary>
-    /// <param name="quiz"></param>
-    /// <param name="filePath"></param>
+    /// <param name="quiz">The Quiz object to be serialized and saved.</param>
+    /// <param name="filePath">The file path where the serialized Quiz object will be saved.</param>
     public void SaveQuiz(Quiz quiz, string filePath)
     {
         XmlSerializer serializer = new XmlSerializer(typeof(Quiz));
@@ -20,10 +20,10 @@ public class FileOperations
     }
 
     /// <summary>
-    /// 
+    /// Deserializes an XML file from the specified file path into a Quiz object.
     /// </summary>
-    /// <param name="filePath"></param>
-    /// <returns></returns>
+    /// <param name="filePath">The file path of the XML file to be deserialized.</param>
+    /// <returns>A Quiz object reconstructed from the XML file.</returns>
     public Quiz LoadQuiz(string filePath)
     {
         XmlSerializer serializer = new XmlSerializer(typeof(Quiz));
