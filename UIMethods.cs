@@ -43,7 +43,7 @@ public class UIMethods
         Console.WriteLine("2. Play Quiz");
         Console.WriteLine("3. Save the quiz");
         Console.WriteLine("4. Load the Quiz");
-        Console.WriteLine("5. Reomve A question");
+        Console.WriteLine("5. Remove A question");
         Console.WriteLine("6. Exit");
         Console.WriteLine("Please enter from 1 or 6 ");
         return int.Parse(Console.ReadLine());
@@ -262,7 +262,7 @@ public class UIMethods
             Console.WriteLine("Enter the file path for loading the quiz:");
             string filePath = Console.ReadLine();
             Console.WriteLine("quiz has been loaded");
-            logic.LoadQuiz();
+            logic.LoadQuiz(filePath);
         }
         else
         {

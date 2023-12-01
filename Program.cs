@@ -34,14 +34,14 @@ namespace QuizApp
                         Quiz myQuiz = new Quiz();
                         UIMethods.PlayQuiz(myQuiz);
                         Console.Clear();
-                        break; 
+                        break;
                     case MenuOptions.SAVEQUIZ:
                         // save quiz logic
-
+                        uiMethods.SaveQuizPrompt();
                         break;
                     case MenuOptions.LOADQUIZ:
                         // load quiz logic 
-                       
+                        uiMethods.LoadQuizPrompt();
                         break;
                     case MenuOptions.REMOVEQUESTION:
                         //remove question logic
@@ -55,7 +55,7 @@ namespace QuizApp
                         break;
                     default:
                         // invaild choice handler 
-                        break;
+                        throw new NotImplementedException("not a optio");
                 }
             }
         }
