@@ -2,11 +2,6 @@
 public class Quiz 
 {
     /// <summary>
-    /// Defines the maximum number of choices allowed.
-    /// </summary>
-    public const int ChoiceLimit = 3;
-
-    /// <summary>
     /// A list to store the questions.
     /// </summary>
     public List<Question> Questions { get; set; } = new List<Question>();
