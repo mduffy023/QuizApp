@@ -55,7 +55,7 @@ namespace QuizApp
                         break;
                     default:
                         // invaild choice handler 
-                        throw new NotImplementedException("not a optio");
+                        throw new NotImplementedException("not a optio"); 
                 }
             }
         }

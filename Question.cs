@@ -4,7 +4,14 @@ public class Question
     /// <summary>
     /// The main text or statement of the question.
     /// </summary>
-    public string Query { get; set; }
+    private string _Query;
+
+    public string Query
+    {
+        get { return _Query; }
+        set { _Query = value; }
+    }
+
 
     /// <summary>
     /// A list of potential choices or options associated with the question.
@@ -24,7 +31,7 @@ public class Question
     /// <param name="answers">A list of correct answers for the question.</param>
     public Question(string query, List<string> choices, List<string> answers)
     {
-        Query = query;
+        _Query = query;
         Choices = choices;
         Answers = answers;
     }
