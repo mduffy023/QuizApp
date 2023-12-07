@@ -7,8 +7,7 @@ namespace QuizApp
         static void Main(string[] args)
         {
 
-            Quiz quiz = new Quiz();
-            FileOperations fileOperations = new FileOperations();
+            Quiz quiz = new Quiz();           
             Logic logic = new Logic(quiz);
             UIMethods uiMethods = new UIMethods(logic);
 
