@@ -7,7 +7,7 @@ namespace QuizApp
         static void Main(string[] args)
         {
 
-            Quiz quiz = new Quiz();           
+            Quiz quiz = new Quiz();
             Logic logic = new Logic(quiz);
             UIMethods uiMethods = new UIMethods(logic);
 
@@ -25,7 +25,7 @@ namespace QuizApp
                     case MenuOptions.ADDQUESTION:
                         // add question logic 
                        Question newQestion =  UIMethods.GetNewQuestion();
-                        logic.AddQuestion(newQestion);
+                        quiz.AddQuestion(newQestion);
                         Console.Clear();
                         break;
                     case MenuOptions.PLAYQUIZ:
@@ -36,7 +36,7 @@ namespace QuizApp
                         break;
                     case MenuOptions.SAVEQUIZ:
                         // save quiz logic
-                        uiMethods.SaveQuizPrompt();
+                        uiMethods.SaveQuizPrompt(); 
                         break;
                     case MenuOptions.LOADQUIZ:
                         // load quiz logic 
@@ -46,7 +46,7 @@ namespace QuizApp
                         //remove question logic
                         uiMethods.GetAllQuizQuestions();
                         int indexToDelete = uiMethods.RemoveQuestionFromQuiz();
-                        logic.RemoveQuestion(indexToDelete);
+                        quiz.RemoveQuestion(indexToDelete);
                         break;
                         case MenuOptions.EXIT:
                         isRunning = false;

@@ -14,4 +14,28 @@ public class Quiz
     {
         Questions.Add(question);
     }
+
+    /// <summary>
+    ///  Remove a qustion from the quiz at the specified index 
+    /// </summary>
+    /// <param name="questionIndex">the index of the question to be removed. Indexing starts at 0, 
+    /// so the first question has an index of 0, the second has an index of 1, ect</param>
+    public void RemoveQuestion(int questionIndex)
+    {
+        if (questionIndex >= 0 && questionIndex < Questions.Count)
+        {
+           Questions.RemoveAt(questionIndex);
+        }
+    }
+
+    /// <summary>
+    /// Retrieves all questions from the current quiz.
+    /// </summary>
+    /// <returns>A List of Question objects representing 
+    /// all the questions in the quiz.</returns>
+    public List<Question> GetAllQuestions()
+    {
+        return Questions;
+    }
+
 }

@@ -4,6 +4,7 @@ public class UIMethods
 {
     public const int CHOICELIMIT = 4;
     private Logic logic;
+    Quiz quiz = new Quiz();
 
     /// <summary>
     /// the method is used to 
@@ -93,7 +94,7 @@ public class UIMethods
     /// </summary>
     public int RemoveQuestionFromQuiz()
     {
-        List<string> allQuestion = logic.GetAllQuestions().Select(question => question.Query).ToList();
+        List<string> allQuestion = quiz.GetAllQuestions().Select(question => question.Query).ToList();
 
         if (allQuestion.Count == 0)
         {
@@ -106,7 +107,7 @@ public class UIMethods
             Console.WriteLine("Enter the index of the question you would like to get rid of?");
             int index;
             bool isNumber = int.TryParse(Console.ReadLine(), out index);
-            if (isNumber && index >= 0 && index < logic.GetAllQuestions().Count)
+            if (isNumber && index >= 0 && index < quiz.GetAllQuestions().Count)
             {
                 return index;
             }
@@ -122,7 +123,7 @@ public class UIMethods
     /// </summary>
     public void GetAllQuizQuestions()
     {
-       List<Question> questions = logic.GetAllQuestions();
+       List<Question> questions = quiz.GetAllQuestions();
         foreach(Question question in questions)
         {
             Console.WriteLine(question.Query);

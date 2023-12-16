@@ -22,38 +22,6 @@ public class Logic
     }
 
     /// <summary>
-    /// Adds a new question to the current quiz.
-    /// </summary>
-    /// <param name="question">The Question object to be added to the quiz.</param>
-    public void AddQuestion(Question question)
-    {
-        quiz.AddQuestion(question);
-    }
-
-    /// <summary>
-    ///  Remove a qustion from the quiz at the specified index 
-    /// </summary>
-    /// <param name="questionIndex">the index of the question to be removed. Indexing starts at 0, 
-    /// so the first question has an index of 0, the second has an index of 1, ect</param>
-    public void RemoveQuestion(int questionIndex)
-    {
-        if(questionIndex >= 0 && questionIndex < quiz.Questions.Count)
-        {
-            quiz.Questions.RemoveAt(questionIndex);
-        }
-    }
-
-    /// <summary>
-    /// Retrieves all questions from the current quiz.
-    /// </summary>
-    /// <returns>A List of Question objects representing 
-    /// all the questions in the quiz.</returns>
-    public List<Question> GetAllQuestions()
-    {
-        return quiz.Questions;
-    }
-
-    /// <summary>
     /// Displays the total score on the console.
     /// </summary>
     /// <param name="score">The score value to be displayed.</param>
