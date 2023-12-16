@@ -24,7 +24,7 @@ public class Quiz
     {
         if (questionIndex >= 0 && questionIndex < Questions.Count)
         {
-           Questions.RemoveAt(questionIndex);
+            Questions.RemoveAt(questionIndex);
         }
     }
 
