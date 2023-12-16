@@ -29,7 +29,8 @@ namespace QuizApp
                     case MenuOptions.PLAYQUIZ:
                         // play quiz logic 
                         Quiz myQuiz = new Quiz();
-                        UIMethods.PlayQuiz(myQuiz);
+                        int score = UIMethods.PlayQuiz(myQuiz);
+                        Console.WriteLine($"Your Score:{score}/{quiz.Questions.Count}");
                         Console.Clear();
                         break;
                     case MenuOptions.SAVEQUIZ:

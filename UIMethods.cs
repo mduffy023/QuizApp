@@ -139,7 +139,7 @@ public class UIMethods
     /// 
     /// </summary>
     /// <param name="quiz">get the quiz that is loaded</param>
-    public static void PlayQuiz(Quiz quiz)
+    public static int PlayQuiz(Quiz quiz)
     {
         int score = 0;
 
@@ -158,6 +158,7 @@ public class UIMethods
                 Console.WriteLine($"incorrect the Answer is {question.Answers}");
             }
         }
+        return score;
     }
 
     /// <summary>
