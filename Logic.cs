@@ -5,10 +5,7 @@ using System.Security.AccessControl;
 
 public class Logic
 {
-
     private Quiz quiz;
-    private int score;
-    private FileOperations fileOperations;
 
     /// <summary>
     /// Initializes a new instance 
@@ -18,7 +15,6 @@ public class Logic
     public Logic(Quiz start)
     {
         quiz = start;
-        score = 0;
     }
 
     /// <summary>
@@ -34,17 +30,17 @@ public class Logic
     /// Saves the current quiz to a specified file path.
     /// </summary>
     /// <param name="filePath">The file path where the quiz will be saved.</param>
-    public void SaveQuiz(string filePath)
+    public static void SaveQuiz(Quiz quiz, string filePath)
     {
-        fileOperations.SaveQuiz(quiz, filePath);
+        FileOperations.SaveQuiz(quiz, filePath);
     }
 
     /// <summary>
     /// Loads a quiz from the specified file path.
     /// </summary>
     /// <param name="filePath">The file path from which the quiz will be loaded.</param>
-    public void LoadQuiz(string filePath)
+    public static Quiz LoadQuiz(string filePath)
     {
-        fileOperations.LoadQuiz(filePath);
+       return FileOperations.LoadQuiz(filePath);
     }
 }

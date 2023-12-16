@@ -92,7 +92,7 @@ public class UIMethods
     /// should add a display to show the index of each qustion#
     /// for the user to make it more readable
     /// </summary>
-    public int RemoveQuestionFromQuiz()
+    public static int RemoveQuestionFromQuiz(Quiz quiz)
     {
         List<string> allQuestion = quiz.GetAllQuestions().Select(question => question.Query).ToList();
 
@@ -121,12 +121,12 @@ public class UIMethods
     /// <summary>
     ///  gets all qustions
     /// </summary>
-    public void GetAllQuizQuestions()
+    public static void GetAllQuizQuestions(Quiz quiz)
     {
        List<Question> questions = quiz.GetAllQuestions();
         foreach(Question question in questions)
         {
-            Console.WriteLine(question.Query);
+            Console.WriteLine(question.Query);         
         }
     }
 
@@ -189,7 +189,7 @@ public class UIMethods
     /// -----------------------------
     /// 
     /// </summary>
-    public void SaveQuizPrompt()
+    public static void SaveQuizPrompt(Quiz quiz)
     {
 
         string userPromt = "";
@@ -219,7 +219,7 @@ public class UIMethods
             Console.WriteLine("Enter the file path for saving the quiz:");
             string filePath = Console.ReadLine();
             Console.WriteLine("quiz has been saved");
-            logic.SaveQuiz(filePath);
+            Logic.SaveQuiz(quiz,filePath);
         }
         else
         {
@@ -234,7 +234,7 @@ public class UIMethods
     /// -----------------------------
     /// 
     /// </summary>
-    public void LoadQuizPrompt()
+    public static Quiz LoadQuizPrompt()
     {
         string userPromt = "";
         bool answer = false;
@@ -262,12 +262,14 @@ public class UIMethods
         {
             Console.WriteLine("Enter the file path for loading the quiz:");
             string filePath = Console.ReadLine();
+            Quiz loadedQuiz = FileOperations.LoadQuiz(filePath);
             Console.WriteLine("quiz has been loaded");
-            logic.LoadQuiz(filePath);
+            return loadedQuiz;
         }
         else
         {
             Console.WriteLine(" quiz have not been loaded");
+            return null;
         }
     }
 }

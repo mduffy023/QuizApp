@@ -8,8 +8,6 @@ namespace QuizApp
         {
 
             Quiz quiz = new Quiz();
-            Logic logic = new Logic(quiz);
-            UIMethods uiMethods = new UIMethods(logic);
 
             UIMethods.DisplayIntro();
 
@@ -36,16 +34,16 @@ namespace QuizApp
                         break;
                     case MenuOptions.SAVEQUIZ:
                         // save quiz logic
-                        uiMethods.SaveQuizPrompt(); 
+                        UIMethods.SaveQuizPrompt(quiz);
                         break;
                     case MenuOptions.LOADQUIZ:
                         // load quiz logic 
-                        uiMethods.LoadQuizPrompt();
+                        UIMethods.LoadQuizPrompt();
                         break;
                     case MenuOptions.REMOVEQUESTION:
                         //remove question logic
-                        uiMethods.GetAllQuizQuestions();
-                        int indexToDelete = uiMethods.RemoveQuestionFromQuiz();
+                        UIMethods.GetAllQuizQuestions(quiz);
+                        int indexToDelete = UIMethods.RemoveQuestionFromQuiz(quiz);
                         quiz.RemoveQuestion(indexToDelete);
                         break;
                         case MenuOptions.EXIT:
