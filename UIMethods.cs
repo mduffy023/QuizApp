@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-public class UIMethods
+﻿public class UIMethods
 {
     public const int CHOICELIMIT = 4;
     private Logic logic;

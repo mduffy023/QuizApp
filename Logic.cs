@@ -1,9 +1,4 @@
-﻿using System.ComponentModel;
-using System.IO;
-using System.IO.Enumeration;
-using System.Security.AccessControl;
-
-public class Logic
+﻿public class Logic
 {
     private Quiz quiz;
 

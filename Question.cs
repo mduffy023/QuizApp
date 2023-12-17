@@ -32,8 +32,8 @@ public class Question
     public Question(string query, List<string> choices, List<string> answers)
     {
         _Query = query;
-        Choices = choices;
-        Answers = answers;
+        Choices = choices ?? new List<string>(); // Ensure choices is not null
+        Answers = answers ?? new List<string>();
     }
 }
 
