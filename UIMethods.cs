@@ -114,7 +114,7 @@ public class UIMethods
     /// </summary>
     public static int RemoveQuestionFromQuiz(Quiz quiz)
     {
-        List<string> allQuestion = quiz.GetAllQuestions().Select(question => question.Query).ToList();
+        List<string> allQuestion = quiz.DisplayAllQuizQuestions().Select(question => question.Query).ToList();
 
         if (allQuestion.Count == 0)
         {
@@ -127,7 +127,7 @@ public class UIMethods
             Console.WriteLine("Enter the index of the question you would like to get rid of?");
             int index;
             bool isNumber = int.TryParse(Console.ReadLine(), out index);
-            if (isNumber && index >= 0 && index < quiz.GetAllQuestions().Count)
+            if (isNumber && index >= 0 && index < quiz.DisplayAllQuizQuestions().Count)
             {
                 return index;
             }
@@ -141,9 +141,9 @@ public class UIMethods
     /// <summary>
     ///  gets all qustions
     /// </summary>
-    public static void GetAllQuizQuestions(Quiz quiz)
+    public static void DisplayAllQuizQuestions(Quiz quiz)
     {
-       List<Question> questions = quiz.GetAllQuestions();
+       List<Question> questions = quiz.DisplayAllQuizQuestions();
         foreach(Question question in questions)
         {
             Console.WriteLine(question.Query);         

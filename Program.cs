@@ -42,7 +42,7 @@ namespace QuizApp
                         break;
                     case MenuOptions.REMOVEQUESTION:
                         //remove question logic
-                        UIMethods.GetAllQuizQuestions(quiz);
+                        UIMethods.DisplayAllQuizQuestions(quiz);
                         int indexToDelete = UIMethods.RemoveQuestionFromQuiz(quiz);
                         quiz.RemoveQuestion(indexToDelete);
                         break;

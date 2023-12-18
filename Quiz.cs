@@ -33,7 +33,7 @@ public class Quiz
     /// </summary>
     /// <returns>A List of Question objects representing 
     /// all the questions in the quiz.</returns>
-    public List<Question> GetAllQuestions()
+    public List<Question> DisplayAllQuizQuestions()
     {
         return Questions;
     }
