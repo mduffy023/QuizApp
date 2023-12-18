@@ -234,13 +234,20 @@ public class UIMethods
             }
         }
         while (userPromt == "");
-    
+
         if (answer)
         {
             Console.WriteLine("Enter the file path for saving the quiz:");
             string filePath = Console.ReadLine();
-            Console.WriteLine("quiz has been saved");
-            FileOperations.SaveQuiz(quiz,filePath);
+            try
+            {
+                Console.WriteLine("quiz has been saved");
+                FileOperations.SaveQuiz(quiz, filePath);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"quiz not saved due to an error:{ex.Message}");
+            }
         }
         else
         {
