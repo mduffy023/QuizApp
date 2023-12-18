@@ -61,6 +61,16 @@ public class UIMethods
     }
 
     /// <summary>
+    /// Displays the total score on the console.
+    /// </summary>
+    /// <param name="score">The score value to be displayed.</param>
+    public static void DisplayScore(int score)
+    {
+        Console.WriteLine($"Total Score: {score}");
+    }
+
+
+    /// <summary>
     /// allows the user to make a new question
     /// will ask them the question they like to enter 
     /// the choice and the correct answer can be more than one

@@ -12,14 +12,7 @@
         quiz = start;
     }
 
-    /// <summary>
-    /// Displays the total score on the console.
-    /// </summary>
-    /// <param name="score">The score value to be displayed.</param>
-    public void DisplayScore(int score)
-    {
-        Console.WriteLine($"Total Score: {score}");
-    }
+   
 
     ///// <summary>
     ///// Saves the current quiz to a specified file path.

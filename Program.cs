@@ -28,6 +28,7 @@ namespace QuizApp
                         // play quiz logic 
                         Quiz myQuiz = new Quiz();
                         int score = UIMethods.PlayQuiz(myQuiz);
+                        UIMethods.DisplayScore(score);
                         Console.WriteLine($"Your Score:{score}/{quiz.Questions.Count}");
                         Console.Clear();
                         break;
