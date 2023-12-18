@@ -246,7 +246,7 @@ public class UIMethods
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"quiz not saved due to an error:{ex.Message}");
+                Console.WriteLine($"quiz was not saved due to an error:{ex.Message}");
             }
         }
         else
@@ -290,9 +290,17 @@ public class UIMethods
         {
             Console.WriteLine("Enter the file path for loading the quiz:");
             string filePath = Console.ReadLine();
-            Quiz loadedQuiz = FileOperations.LoadQuiz(filePath);
-            Console.WriteLine("quiz has been loaded");
-            return loadedQuiz;
+            try
+            {
+                Quiz loadedQuiz = FileOperations.LoadQuiz(filePath);
+                Console.WriteLine("quiz has been loaded");
+                return loadedQuiz;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"quiz not loaded due to an error{ex.Message}");
+                return null;
+            }
         }
         else
         {
