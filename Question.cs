@@ -4,12 +4,12 @@ public class Question
     /// <summary>
     /// The main text or statement of the question.
     /// </summary>
-    private string _Query;
+    private string _query;
 
     public string Query
     {
-        get { return _Query; }
-        set { _Query = value; }
+        get { return _query; }
+        set { _query = value; }
     }
 
 
@@ -31,7 +31,7 @@ public class Question
     /// <param name="answers">A list of correct answers for the question.</param>
     public Question(string query, List<string> choices, List<string> answers)
     {
-        _Query = query;
+        _query = query;
         Choices = choices ?? new List<string>(); // Ensure choices is not null
         Answers = answers ?? new List<string>();
     }
