@@ -230,7 +230,7 @@ public class UIMethods
             Console.WriteLine("Enter the file path for saving the quiz:");
             string filePath = Console.ReadLine();
             Console.WriteLine("quiz has been saved");
-            Logic.SaveQuiz(quiz,filePath);
+            FileOperations.SaveQuiz(quiz,filePath);
         }
         else
         {
