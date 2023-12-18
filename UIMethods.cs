@@ -1,4 +1,6 @@
-﻿public class UIMethods
+﻿using static Menu;
+
+public class UIMethods
 {
     public const int CHOICELIMIT = 4;
     private Logic logic;
@@ -35,17 +37,27 @@
     /// somthing along those lines 
     /// </summary>
     /// <returns>user input</returns>
-    public static int DisplayMenu()
+    public static MenuOptions DisplayMenu()
     {
-        Console.WriteLine("Main Menu");
-        Console.WriteLine("1. Add a New Question");
-        Console.WriteLine("2. Play Quiz");
-        Console.WriteLine("3. Save the quiz");
-        Console.WriteLine("4. Load the Quiz");
-        Console.WriteLine("5. Remove A question");
-        Console.WriteLine("6. Exit");
-        Console.WriteLine("Please enter from 1 or 6 ");
-        return int.Parse(Console.ReadLine());
+        while (true)
+        {
+            Console.WriteLine("Main Menu");
+            Console.WriteLine("1. Add a New Question");
+            Console.WriteLine("2. Play Quiz");
+            Console.WriteLine("3. Save the quiz");
+            Console.WriteLine("4. Load the Quiz");
+            Console.WriteLine("5. Remove A question");
+            Console.WriteLine("6. Exit");
+            Console.WriteLine("Please enter from 1 or 6 ");
+            if (int.TryParse(Console.ReadLine(), out int choice) && choice >= 1 && choice <= 6)
+            {
+                return (MenuOptions)choice;
+            }
+            else
+            {
+                Console.WriteLine("Invaild input. Please enter a number between 1 or 6 ");
+            }
+        }
     }
 
     /// <summary>

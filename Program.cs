@@ -14,9 +14,7 @@ namespace QuizApp
             bool isRunning = true;
             while (isRunning)
             {
-                int choice = UIMethods.DisplayMenu();
-
-                MenuOptions menuOptions = (MenuOptions)choice;
+                MenuOptions menuOptions = UIMethods.DisplayMenu();
 
                 switch (menuOptions)
                 {
@@ -39,7 +37,7 @@ namespace QuizApp
                         break;
                     case MenuOptions.LOADQUIZ:
                         // load quiz logic 
-                        UIMethods.LoadQuizPrompt();
+                        quiz = UIMethods.LoadQuizPrompt() ?? quiz;
                         break;
                     case MenuOptions.REMOVEQUESTION:
                         //remove question logic
