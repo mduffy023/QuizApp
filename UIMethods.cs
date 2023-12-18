@@ -1,4 +1,5 @@
-﻿using static Menu;
+﻿using System.Net;
+using static Menu;
 
 public class UIMethods
 {
@@ -183,23 +184,24 @@ public class UIMethods
 
     /// <summary>
     /// gets the users choice for the question 
-    ///   features to be added  
-    /// -----------------------------
-    /// 
     /// </summary>
     /// <param name="question">choice of the question</param>
-    public void GetUserChoices(Question question)
+    public static List<string> GetUserChoices(Question question)
     {
         Console.WriteLine(question.Query);
-
-        foreach(string chocie in question.Choices)
+        for (int i = 0; i < question.Choices.Count; i++)
         {
-            Console.WriteLine(chocie);
-
-            Console.WriteLine("pick you choices. if more than one separat with , ");
-            List<string> userChocies = new List<string>();
-            userChocies = Console.ReadLine().Split (',').Select(chocie => chocie.Trim()).ToList();
+            Console.WriteLine($"{i + 1}: {question.Choices[i]}");
         }
+
+        Console.WriteLine("pick you choices. if more than one separat with , ");
+        string input = Console.ReadLine();
+
+        List<string> userChoices = new List<string>();
+        userChoices = Console.ReadLine().Split (',').Select(chocie => chocie.Trim()).ToList();
+
+        return userChoices;
+        
     }
 
 
