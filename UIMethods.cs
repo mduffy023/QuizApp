@@ -293,8 +293,7 @@ public class UIMethods
             Console.WriteLine("Enter the file path for loading the quiz:");
             string filePath = Console.ReadLine();
             try
-            {
-          
+            {       
                 Quiz loadedQuiz = FileOperations.LoadQuiz(filePath);
                 Console.WriteLine("quiz has been loaded");
                 return loadedQuiz;
