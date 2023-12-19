@@ -11,24 +11,4 @@
     {
         quiz = start;
     }
-
-   
-
-    ///// <summary>
-    ///// Saves the current quiz to a specified file path.
-    ///// </summary>
-    ///// <param name="filePath">The file path where the quiz will be saved.</param>
-    //public static void SaveQuiz(Quiz quiz, string filePath)
-    //{
-    //    FileOperations.SaveQuiz(quiz, filePath);
-    //}
-
-    ///// <summary>
-    ///// Loads a quiz from the specified file path.
-    ///// </summary>
-    ///// <param name="filePath">The file path from which the quiz will be loaded.</param>
-    //public static Quiz LoadQuiz(string filePath)
-    //{
-    //   return FileOperations.LoadQuiz(filePath);
-    //}
 }

@@ -4,7 +4,7 @@ using static Menu;
 public class UIMethods
 {
     public const int CHOICELIMIT = 4;
-    private Logic logic;
+    //private Logic logic;
     Quiz quiz = new Quiz();
 
     /// <summary>
@@ -13,10 +13,10 @@ public class UIMethods
     /// functionalities provided by Logic class 
     /// </summary>
     /// <param name="logic">allows this class access to Logic class</param>
-    public UIMethods(Logic logic)
-    {
-        this.logic = logic;
-    }
+  //  public UIMethods(Logic logic)
+   // {
+    //    this.logic = logic;
+   // }
 
     /// <summary>
     /// display a welcome message to the user 
@@ -243,8 +243,8 @@ public class UIMethods
             string filePath = Console.ReadLine();
             try
             {
-                Console.WriteLine("quiz has been saved");
                 FileOperations.SaveQuiz(quiz, filePath);
+                Console.WriteLine("quiz has been saved");     
             }
             catch (Exception ex)
             {
@@ -294,6 +294,7 @@ public class UIMethods
             string filePath = Console.ReadLine();
             try
             {
+          
                 Quiz loadedQuiz = FileOperations.LoadQuiz(filePath);
                 Console.WriteLine("quiz has been loaded");
                 return loadedQuiz;
