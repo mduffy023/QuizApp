@@ -13,10 +13,10 @@ public class UIMethods
     /// functionalities provided by Logic class 
     /// </summary>
     /// <param name="logic">allows this class access to Logic class</param>
-  //  public UIMethods(Logic logic)
-   // {
+    //  public UIMethods(Logic logic)
+    // {
     //    this.logic = logic;
-   // }
+    // }
 
     /// <summary>
     /// display a welcome message to the user 
@@ -100,6 +100,7 @@ public class UIMethods
         List<string> correctAnwers = Console.ReadLine().Split(',').Select(a => a.Trim()).ToList();
 
         return new Question(usersQuestion, userChoices, correctAnwers);
+
     }
 
     /// <summary>
@@ -134,7 +135,7 @@ public class UIMethods
             }
             else
             {
-                Console.WriteLine("Invalid index. Please enter a number within the specified range.");               
+                Console.WriteLine("Invalid index. Please enter a number within the specified range.");
             }
         }
     }
@@ -144,10 +145,10 @@ public class UIMethods
     /// </summary>
     public static void DisplayAllQuizQuestions(Quiz quiz)
     {
-       List<Question> questions = quiz.DisplayAllQuizQuestions();
-        foreach(Question question in questions)
+        List<Question> questions = quiz.DisplayAllQuizQuestions();
+        foreach (Question question in questions)
         {
-            Console.WriteLine(question.Query);         
+            Console.WriteLine(question.Query);
         }
     }
 
@@ -198,10 +199,10 @@ public class UIMethods
         string input = Console.ReadLine();
 
         List<string> userChoices = new List<string>();
-        userChoices = Console.ReadLine().Split (',').Select(chocie => chocie.Trim()).ToList();
+        userChoices = Console.ReadLine().Split(',').Select(chocie => chocie.Trim()).ToList();
 
         return userChoices;
-        
+
     }
 
 
@@ -217,10 +218,10 @@ public class UIMethods
 
         string userPromt = "";
         bool answer = false;
-        Console.WriteLine("would you like to save quiz? Yes or No?");
-        userPromt = Console.ReadLine();
         do
         {
+            Console.WriteLine("would you like to save quiz? Yes or No?");
+            userPromt = Console.ReadLine();
             switch (userPromt)
             {
                 case "yes":
@@ -244,7 +245,7 @@ public class UIMethods
             try
             {
                 FileOperations.SaveQuiz(quiz, filePath);
-                Console.WriteLine("quiz has been saved");     
+                Console.WriteLine("quiz has been saved");
             }
             catch (Exception ex)
             {
@@ -293,12 +294,12 @@ public class UIMethods
             Console.WriteLine("Enter the file path for loading the quiz:");
             string filePath = Console.ReadLine();
             try
-            {       
+            {
                 Quiz loadedQuiz = FileOperations.LoadQuiz(filePath);
                 Console.WriteLine("quiz has been loaded");
                 return loadedQuiz;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine($"quiz not loaded due to an error{ex.Message}");
                 return null;

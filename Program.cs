@@ -35,16 +35,19 @@ namespace QuizApp
                     case MenuOptions.SAVEQUIZ:
                         // save quiz logic
                         UIMethods.SaveQuizPrompt(quiz);
+                        Console.Clear();
                         break;
                     case MenuOptions.LOADQUIZ:
                         // load quiz logic 
                         quiz = UIMethods.LoadQuizPrompt() ?? quiz;
+                        Console.Clear();
                         break;
                     case MenuOptions.REMOVEQUESTION:
                         //remove question logic
                         UIMethods.DisplayAllQuizQuestions(quiz);
                         int indexToDelete = UIMethods.RemoveQuestionFromQuiz(quiz);
                         quiz.RemoveQuestion(indexToDelete);
+                        Console.Clear();
                         break;
                         case MenuOptions.EXIT:
                         isRunning = false;
@@ -52,7 +55,8 @@ namespace QuizApp
                         break;
                     default:
                         // invaild choice handler 
-                        throw new NotImplementedException("not a optio"); 
+                        throw new NotImplementedException("not a option");
+                        Console.Clear();
                 }
             }
         }
