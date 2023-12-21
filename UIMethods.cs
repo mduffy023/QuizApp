@@ -56,7 +56,8 @@ public class UIMethods
             }
             else
             {
-                Console.WriteLine("Invaild input. Please enter a number between 1 or 6 ");
+                Console.Clear();
+                Console.WriteLine("Invaild input. Please enter a number between 1 or 6 ");          
             }
         }
     }
@@ -205,13 +206,9 @@ public class UIMethods
 
     }
 
-
     /// <summary>
     /// Prompts the user to decide whether to save a quiz 
     /// and handles the saving process.
-    /// features to be added  
-    /// -----------------------------
-    /// 
     /// </summary>
     public static void SaveQuizPrompt(Quiz quiz)
     {
@@ -220,23 +217,23 @@ public class UIMethods
         bool answer = false;
         do
         {
-            Console.WriteLine("would you like to save quiz? Yes or No?");
-            userPromt = Console.ReadLine();
+            Console.WriteLine("would you like to save quiz? Y or N?");
+            userPromt = Console.ReadLine().ToUpper();
             switch (userPromt)
             {
-                case "yes":
+                case "Y":
                     answer = true;
                     break;
-                case "no":
+                case "N":
                     answer = false;
                     break;
                 default:
-                    Console.WriteLine("can only answer with Yes or No");
-                    userPromt = "";
+                    Console.WriteLine("Invaild input, Please only answer with Y or N");
+     
                     break;
             }
         }
-        while (userPromt == "");
+        while (answer == false && userPromt != "N");
 
         if (answer)
         {
@@ -261,33 +258,29 @@ public class UIMethods
     /// <summary>
     /// Prompts the user to decide whether to load 
     /// a quiz and handles the loading process.
-    ///  features to be added  
-    /// -----------------------------
-    /// 
     /// </summary>
     public static Quiz LoadQuizPrompt()
     {
         string userPromt = "";
         bool answer = false;
-        Console.WriteLine("would you like to load quiz? Yes or No?");
-        userPromt = Console.ReadLine();
+        Console.WriteLine("would you like to load quiz? Y or N?");
+        userPromt = Console.ReadLine().ToUpper();
         do
         {
             switch (userPromt)
             {
-                case "yes":
+                case "Y":
                     answer = true;
                     break;
-                case "no":
+                case "N":
                     answer = false;
                     break;
                 default:
-                    Console.WriteLine("can only answer with Yes or No");
-                    userPromt = "";
+                    Console.WriteLine("Invaild input, Please only answer with Y or N");
                     break;
             }
         }
-        while (userPromt == "");
+        while (answer == false && userPromt != "N");
 
         if (answer)
         {

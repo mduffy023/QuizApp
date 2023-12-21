@@ -56,7 +56,6 @@ namespace QuizApp
                     default:
                         // invaild choice handler 
                         throw new NotImplementedException("not a option");
-                        Console.Clear();
                 }
             }
         }
