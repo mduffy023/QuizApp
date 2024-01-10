@@ -159,7 +159,7 @@ public class UIMethods
     ///  it to the user for them to answer 
     ///   features to be added  
     /// -----------------------------
-    /// 
+    /// need to move this to logic
     /// </summary>
     /// <param name="quiz">get the quiz that is loaded</param>
     public static int PlayQuiz(Quiz quiz)
@@ -213,18 +213,18 @@ public class UIMethods
     public static void SaveQuizPrompt(Quiz quiz)
     {
 
-        string userPromt = "";
+        char userPromt;
         bool answer = false;
         do
         {
             Console.WriteLine("would you like to save quiz? Y or N?");
-            userPromt = Console.ReadLine().ToUpper();
+            userPromt = Console.ReadKey().KeyChar;
             switch (userPromt)
             {
-                case "Y":
+                case 'Y':
                     answer = true;
                     break;
-                case "N":
+                case 'N':
                     answer = false;
                     break;
                 default:
@@ -233,7 +233,7 @@ public class UIMethods
                     break;
             }
         }
-        while (answer == false && userPromt != "N");
+        while (answer == false && userPromt != 'N');
 
         if (answer)
         {
@@ -261,18 +261,18 @@ public class UIMethods
     /// </summary>
     public static Quiz LoadQuizPrompt()
     {
-        string userPromt = "";
+        char userPromt;
         bool answer = false;
         Console.WriteLine("would you like to load quiz? Y or N?");
-        userPromt = Console.ReadLine().ToUpper();
+        userPromt = Console.ReadKey().KeyChar;
         do
         {
             switch (userPromt)
             {
-                case "Y":
+                case 'Y':
                     answer = true;
                     break;
-                case "N":
+                case 'N':
                     answer = false;
                     break;
                 default:
@@ -280,7 +280,7 @@ public class UIMethods
                     break;
             }
         }
-        while (answer == false && userPromt != "N");
+        while (answer == false && userPromt != 'N');
 
         if (answer)
         {
