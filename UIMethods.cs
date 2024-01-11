@@ -4,6 +4,9 @@ using static Menu;
 public class UIMethods
 {
     public const int CHOICELIMIT = 4;
+    public const char YES = 'Y';
+    public const char NO = 'N';
+
     //private Logic logic;
     Quiz quiz = new Quiz();
 
@@ -154,36 +157,38 @@ public class UIMethods
     }
 
     /// <summary>
-    ///  method used to play the quiz 
-    ///  get each question and displays 
-    ///  it to the user for them to answer 
-    ///   features to be added  
-    /// -----------------------------
-    /// need to move this to logic
+    /// Prompts the user with a question and its possible choices, then reads the user's answer from the console.
     /// </summary>
-    /// <param name="quiz">get the quiz that is loaded</param>
-    public static int PlayQuiz(Quiz quiz)
+    /// <param name="question">The Question object containing the query and choices to present to the user.</param>
+    /// <returns>The answer provided by the user as a string.</returns>
+    public static string GetAnswerFromUser(Question question)
     {
-        int score = 0;
-
-        foreach (Question question in quiz.Questions)
-        {
-            Console.WriteLine(question);
-            Console.WriteLine("enter your answer: ");
-            string userAnswer = Console.ReadLine();
-            if (question.Answers.Contains(userAnswer))
-            {
-                Console.WriteLine("that is correct!");
-                score++;
-            }
-            else
-            {
-                Console.WriteLine($"incorrect the Answer is {question.Answers}");
-            }
-        }
-        return score;
+        Console.WriteLine(question.Query);
+       for (int i = 0; i < question.Choices.Count; i++)
+       {
+            Console.WriteLine($"{i + 1}. {question.Choices[i]}");
+       }
+        Console.WriteLine("Enter your answer: ");
+        return Console.ReadLine();
     }
 
+    /// <summary>
+    /// Displays a message to the user indicating that the provided answer is correct.
+    /// </summary>
+    public static void OutputRightAnswerMessage()
+    {
+      Console.WriteLine("That is correct!");
+    }
+
+    /// <summary>
+    /// Displays a message to the user indicating that the provided answer is incorrect and shows the correct answer(s).
+    /// </summary>
+    /// <param name="question">The Question object containing the correct answer(s) to display to the user.</param>
+    public static void OutputWrongAnswerMessage(Question question)
+    {
+      Console.WriteLine($"Incorrect. The correct answer is: {string.Join(", ", question.Answers)}");
+    }
+    
     /// <summary>
     /// gets the users choice for the question 
     /// </summary>
@@ -196,7 +201,7 @@ public class UIMethods
             Console.WriteLine($"{i + 1}: {question.Choices[i]}");
         }
 
-        Console.WriteLine("pick you choices. if more than one separat with , ");
+        Console.WriteLine("Pick your choices. if more than one separat with , ");
         string input = Console.ReadLine();
 
         List<string> userChoices = new List<string>();
@@ -221,10 +226,10 @@ public class UIMethods
             userPromt = Console.ReadKey().KeyChar;
             switch (userPromt)
             {
-                case 'Y':
+                case  YES:
                     answer = true;
                     break;
-                case 'N':
+                case   NO:
                     answer = false;
                     break;
                 default:
@@ -233,7 +238,7 @@ public class UIMethods
                     break;
             }
         }
-        while (answer == false && userPromt != 'N');
+        while (answer == false && userPromt != NO);
 
         if (answer)
         {
@@ -269,10 +274,10 @@ public class UIMethods
         {
             switch (userPromt)
             {
-                case 'Y':
+                case YES:
                     answer = true;
                     break;
-                case 'N':
+                case  NO:
                     answer = false;
                     break;
                 default:
@@ -280,7 +285,7 @@ public class UIMethods
                     break;
             }
         }
-        while (answer == false && userPromt != 'N');
+        while (answer == false && userPromt != NO);
 
         if (answer)
         {
