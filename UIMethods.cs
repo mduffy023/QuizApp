@@ -1,5 +1,4 @@
-﻿using System.Net;
-using static Menu;
+﻿using static Menu;
 
 public class UIMethods
 {
@@ -79,8 +78,6 @@ public class UIMethods
     /// allows the user to make a new question
     /// will ask them the question they like to enter 
     /// the choice and the correct answer can be more than one
-    ///  feature to be added  
-    /// -----------------------------
     /// need to impelment some data handleing 
     /// so if a question has been written then it 
     /// shouldn't be allow to be written again 
@@ -104,7 +101,6 @@ public class UIMethods
         List<string> correctAnwers = Console.ReadLine().Split(',').Select(a => a.Trim()).ToList();
 
         return new Question(usersQuestion, userChoices, correctAnwers);
-
     }
 
     /// <summary>
@@ -120,26 +116,31 @@ public class UIMethods
     /// </summary>
     public static int RemoveQuestionFromQuiz(Quiz quiz)
     {
-        List<string> allQuestion = quiz.DisplayAllQuizQuestions().Select(question => question.Query).ToList();
+        List<string> allQuestions = quiz.DisplayAllQuizQuestions().Select(question => question.Query).ToList();
 
-        if (allQuestion.Count == 0)
+        if (allQuestions.Count == 0)
         {
-            Console.WriteLine("there are no question to remove");
-            return 0;
+            // Check if the user wants to cancel the operation by pressing Enter.
+            Console.WriteLine("There are no questions to remove. Press any key to return to the main menu...");
+            Console.ReadKey();
+            return -1; // Return -1 to indicate no removal will take place.
         }
+
+        Console.WriteLine("Enter the index of the question you would like to get rid of, or just press Enter to back out without removing any questions:");
 
         while (true)
         {
-            Console.WriteLine("Enter the index of the question you would like to get rid of?");
-            int index;
-            bool isNumber = int.TryParse(Console.ReadLine(), out index);
-            if (isNumber && index >= 0 && index < quiz.DisplayAllQuizQuestions().Count)
+            string input = Console.ReadLine(); // Get user input after the prompt.
+
+            // Attempt to parse the input as an index number.
+            bool isNumber = int.TryParse(input, out int index);
+            if (isNumber && index >= 0 && index < allQuestions.Count)
             {
-                return index;
+                return index; // Return the valid index to remove the question.
             }
             else
             {
-                Console.WriteLine("Invalid index. Please enter a number within the specified range.");
+                Console.WriteLine("Invalid index. Please enter a number within the specified range or just press Enter to back out:");
             }
         }
     }
@@ -225,6 +226,7 @@ public class UIMethods
             Console.WriteLine("would you like to save quiz? Y or N?");
             userPromt = Console.ReadKey().KeyChar;
             userPromt = char.ToUpper(userPromt);
+            Console.WriteLine();
             switch (userPromt)
             {
                 case  YES:
@@ -242,17 +244,11 @@ public class UIMethods
 
         if (answer)
         {
-            Console.WriteLine("Enter the file path for saving the quiz:");
+            Console.WriteLine("\nEnter the file path for loading the quiz:");
             string filePath = Console.ReadLine();
-            try
-            {
-                FileOperations.SaveQuiz(quiz, filePath);
-                Console.WriteLine("quiz has been saved");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"quiz was not saved due to an error:{ex.Message}");
-            }
+            filePath = filePath.Trim('"'); // Removes quotation marks from the start and end of the string
+            FileOperations.SaveQuiz(quiz, filePath);
+            Console.WriteLine("quiz has been saved");  
         }
         else
         {
@@ -266,48 +262,50 @@ public class UIMethods
     /// </summary>
     public static Quiz LoadQuizPrompt()
     {
-        char userPromt;
+        char userPrompt;
         bool answer = false;
-        Console.WriteLine("would you like to load quiz? Y or N?");
-        
+        Console.WriteLine("Would you like to load a quiz? Y or N?");
+
         do
         {
-            userPromt = Console.ReadKey().KeyChar;
-            userPromt = char.ToUpper(userPromt);
-            switch (userPromt)
+            userPrompt = Console.ReadKey().KeyChar;
+            userPrompt = char.ToUpper(userPrompt);
+            switch (userPrompt)
             {
                 case YES:
                     answer = true;
                     break;
-                case  NO:
+                case NO:
                     answer = false;
                     break;
                 default:
-                    Console.WriteLine("Invaild input, Please only answer with Y or N");
+                    Console.WriteLine("Invalid input, please only answer with Y or N");
                     break;
             }
         }
-        while (answer == false && userPromt != NO);
+        while (answer == false && userPrompt != NO);
 
         if (answer)
         {
-            Console.WriteLine("Enter the file path for loading the quiz:");
+            Console.WriteLine("\nEnter the file path for loading the quiz:");
             string filePath = Console.ReadLine();
+            filePath = filePath.Trim('"'); // Removes quotation marks from the start and end of the string
+
             try
             {
                 Quiz loadedQuiz = FileOperations.LoadQuiz(filePath);
-                Console.WriteLine("quiz has been loaded");
+                Console.WriteLine("Quiz has been loaded.");
                 return loadedQuiz;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"quiz not loaded due to an error{ex.Message}");
+                Console.WriteLine($"Quiz not loaded due to an error: {ex.Message}");
                 return null;
             }
         }
         else
         {
-            Console.WriteLine(" quiz have not been loaded");
+            Console.WriteLine("Quiz has not been loaded.");
             return null;
         }
     }
