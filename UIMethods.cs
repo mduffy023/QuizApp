@@ -224,6 +224,7 @@ public class UIMethods
         {
             Console.WriteLine("would you like to save quiz? Y or N?");
             userPromt = Console.ReadKey().KeyChar;
+            userPromt = char.ToUpper(userPromt);
             switch (userPromt)
             {
                 case  YES:
@@ -234,7 +235,6 @@ public class UIMethods
                     break;
                 default:
                     Console.WriteLine("Invaild input, Please only answer with Y or N");
-     
                     break;
             }
         }
@@ -269,9 +269,11 @@ public class UIMethods
         char userPromt;
         bool answer = false;
         Console.WriteLine("would you like to load quiz? Y or N?");
-        userPromt = Console.ReadKey().KeyChar;
+        
         do
         {
+            userPromt = Console.ReadKey().KeyChar;
+            userPromt = char.ToUpper(userPromt);
             switch (userPromt)
             {
                 case YES:
