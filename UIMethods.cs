@@ -87,20 +87,40 @@ public class UIMethods
     /// <returns>stores the user question </returns>
     public static Question GetNewQuestion()
     {
-        Console.WriteLine("Enter the Question:");
-        string usersQuestion = Console.ReadLine();
+        string usersQuestion = PromptForNonEmptyInput("Enter the Question:");
 
         List<string> userChoices = new List<string>();
         for (int i = 0; i < CHOICELIMIT; i++)
         {
-            Console.WriteLine($"Enter Choice {i + 1}");
-            userChoices.Add(Console.ReadLine());
+            string choice = PromptForNonEmptyInput($"Enter Choice { i + 1}:");
+            userChoices.Add(choice);
         }
+        string correctAnswersInput = PromptForNonEmptyInput("Enter the Correct answer, separated by comma, if multiple:");
+        List<string> correctAnswers = correctAnswersInput.Split(',').Select(a => a.Trim()).ToList();
 
-        Console.WriteLine("enter the Correct answer, separet by comma, if multiple: ");
-        List<string> correctAnwers = Console.ReadLine().Split(',').Select(a => a.Trim()).ToList();
+        return new Question(usersQuestion, userChoices, correctAnswers);
+    }
 
-        return new Question(usersQuestion, userChoices, correctAnwers);
+    /// <summary>
+    /// Repeatedly prompts the user for input until a non-empty and non-whitespace string is provided.
+    /// This method ensures that the user cannot proceed without providing valid input.
+    /// </summary>
+    /// <param name="prompt">The message displayed to the user, instructing them what to input.</param>
+    /// <returns>A non-empty string input by the user.</returns>
+    private static string PromptForNonEmptyInput(string prompt)
+    {
+        string input;
+        do
+        {
+            Console.WriteLine(prompt);
+            input = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(input))
+            {
+              Console.WriteLine("Input cannot be empty. Please try again.");
+            }
+        } while (string.IsNullOrWhiteSpace(input));
+
+        return input;
     }
 
     /// <summary>
@@ -109,8 +129,6 @@ public class UIMethods
     ///  user removes the question by enter the index
     ///  if there are no question then a message will prompt 
     ///  the user to let them now
-    ///  feature to be added  
-    /// -----------------------------
     /// should add a display to show the index of each qustion#
     /// for the user to make it more readable
     /// </summary>
