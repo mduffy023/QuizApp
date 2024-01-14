@@ -141,6 +141,8 @@ public class UIMethods
             else
             {
                 Console.WriteLine("Invalid index. Please enter a number within the specified range or just press Enter to back out:");
+                Console.ReadKey();
+                return -1;
             }
         }
     }
@@ -216,91 +218,66 @@ public class UIMethods
     /// Prompts the user to decide whether to save a quiz 
     /// and handles the saving process.
     /// </summary>
-    public static void SaveQuizPrompt(Quiz quiz)
+    public static bool SaveQuizPrompt()
     {
+        char userPrompt;
+        Console.WriteLine("Would you like to save a quiz? Y or N?");
 
-        char userPromt;
-        bool answer = false;
         do
         {
-            Console.WriteLine("would you like to save quiz? Y or N?");
-            userPromt = Console.ReadKey().KeyChar;
-            userPromt = char.ToUpper(userPromt);
-            Console.WriteLine();
-            switch (userPromt)
+            userPrompt = Console.ReadKey().KeyChar;
+            userPrompt = char.ToUpper(userPrompt);
+
+            if (userPrompt == YES || userPrompt == NO)
             {
-                case  YES:
-                    answer = true;
-                    break;
-                case   NO:
-                    answer = false;
-                    break;
-                default:
-                    Console.WriteLine("Invaild input, Please only answer with Y or N");
-                    break;
+                return userPrompt == YES;
+            }
+            else
+            {
+                Console.WriteLine("\nInvalid input, please only answer with Y or N");
             }
         }
-        while (answer == false && userPromt != NO);
-
-        if (answer)
-        {
-            Console.WriteLine("\nEnter the file path for loading the quiz:");
-            string filePath = Console.ReadLine();
-            filePath = filePath.Trim('"'); // Removes quotation marks from the start and end of the string
-            FileOperations.SaveQuiz(quiz, filePath);
-            Console.WriteLine("quiz has been saved");  
-        }
-        else
-        {
-            Console.WriteLine("Okay quiz wont be saved");
-        }
+        while (true);
+    }
+    public static string SaveFilePathFromUser()
+    {
+        Console.WriteLine("Enter the file path for loading the quiz:");
+        string filePath = Console.ReadLine();
+        return filePath.Trim('"'); // Removes quotation marks from the start and end of the string
     }
 
     /// <summary>
     /// Prompts the user to decide whether to load 
     /// a quiz and handles the loading process.
     /// </summary>
-    public static Quiz LoadQuizPrompt()
+    public static bool LoadQuizPrompt()
     {
         char userPrompt;
-        bool answer = false;
         Console.WriteLine("Would you like to load a quiz? Y or N?");
 
         do
         {
             userPrompt = Console.ReadKey().KeyChar;
             userPrompt = char.ToUpper(userPrompt);
-            switch (userPrompt)
+            
+            if(userPrompt == YES || userPrompt == NO)
             {
-                case YES:
-                    answer = true;
-                    break;
-                case NO:
-                    answer = false;
-                    break;
-                default:
-                    Console.WriteLine("Invalid input, please only answer with Y or N");
-                    break;
+                return userPrompt == YES;
+            }else
+            {
+                Console.WriteLine("\nInvalid input, please only answer with Y or N"); 
             }
         }
-        while (answer == false && userPrompt != NO);
-
-        if (answer)
-        {
-            Console.WriteLine("\nEnter the file path for loading the quiz:");
-            string filePath = Console.ReadLine();
-            filePath = filePath.Trim('"'); // Removes quotation marks from the start and end of the string
-
-   
-       
-                Quiz loadedQuiz = FileOperations.LoadQuiz(filePath);
-                Console.WriteLine("Quiz has been loaded.");
-                return loadedQuiz;                
-        }
-        else
-        {
-            Console.WriteLine("Quiz has not been loaded.");
-            return null;
-        }
+        while (true);
+    } 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public static string GetFilePathFromUser()
+    {
+        Console.WriteLine("Enter the file path for loading the quiz:");
+        string filePath = Console.ReadLine();
+        return filePath.Trim('"'); // Removes quotation marks from the start and end of the string
     }
 }

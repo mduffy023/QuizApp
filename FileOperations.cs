@@ -27,7 +27,6 @@ public class FileOperations
     /// <returns>A Quiz object reconstructed from the XML file.</returns>
     public static Quiz LoadQuiz(string filePath)
     {
-   
             XmlSerializer serializer = new XmlSerializer(typeof(Quiz));
             using (StreamReader reader = new StreamReader(filePath))
             {
