@@ -1,4 +1,5 @@
-﻿using static Menu;
+﻿using System.Diagnostics.Metrics;
+using static Menu;
 
 public class UIMethods
 {
@@ -170,26 +171,10 @@ public class UIMethods
         }
     }
 
-    /// <summary>
-    /// Prompts the user with a question and its possible choices, then reads the user's answer from the console.
-    /// </summary>
-    /// <param name="question">The Question object containing the query and choices to present to the user.</param>
-    /// <returns>The answer provided by the user as a string.</returns>
-    public static string GetAnswerFromUser(Question question)
-    {
-        Console.WriteLine(question.Query);
-        for (int i = 0; i < question.Choices.Count; i++)
-        {
-            Console.WriteLine($"{i + 1}. {question.Choices[i]}");
-        }
-        Console.WriteLine("Enter your answer: ");
-        return Console.ReadLine();
-    }
-
-    /// <summary>
-    /// Displays a message to the user indicating that the provided answer is correct.
-    /// </summary>
-    public static void OutputRightAnswerMessage()
+        /// <summary>
+        /// Displays a message to the user indicating that the provided answer is correct.
+        /// </summary>
+        public static void OutputRightAnswerMessage()
     {
       Console.WriteLine("That is correct!");
     }
@@ -204,37 +189,26 @@ public class UIMethods
     }
 
     /// <summary>
-    /// gets the users choice for the question 
+    /// Prompts the user with a question and its possible choices, then reads the user's answer from the console.
     /// </summary>
-    /// <param name="question">choice of the question</param>
-    public static List<string> GetUserAnswers(Question question)
+    /// <param name="question">The Question object containing the query and choices to present to the user.</param>
+    /// <returns>The answer provided by the user as a string.</returns>
+    public static string GetAnswerFromUser(Question question)
     {
         Console.WriteLine(question.Query);
         for (int i = 0; i < question.Choices.Count; i++)
         {
-            Console.WriteLine($"{i + 1}: {question.Choices[i]}");
+            Console.WriteLine($"{i + 1}. {question.Choices[i]}");
         }
-        Console.WriteLine("Enter the numbers corresponding to your answers, separated by commas (e.g., 1,4): ");
-        string input = Console.ReadLine();
-        var indices = input.Split(',')
-                           .Select(s => s.Trim())
-                           .Where(s => int.TryParse(s, out int index) && index > 0 && index <= question.Choices.Count)
-                           .Select(s => int.Parse(s) - 1)
-                           .Distinct() // Ensure no duplicate indices
-                           .ToList();
-
-        List<string> userAnswers = indices.Select(index => question.Choices[index]).ToList();
-
-        // Debugging line
-        Console.WriteLine("Translated User Answers: " + string.Join(", ", userAnswers));
-
-        return userAnswers;
+        Console.WriteLine("Enter your answers, separated by commas (e.g., 'answers, answers2'):");
+        return Console.ReadLine();
     }
-        /// <summary>
-        /// Prompts the user to decide whether to save a quiz 
-        /// and handles the saving process.
-        /// </summary>
-        public static bool SaveQuizPrompt()
+
+    /// <summary>
+    /// Prompts the user to decide whether to save a quiz 
+    /// and handles the saving process.
+    /// </summary>
+    public static bool SaveQuizPrompt()
     {
         char userPrompt;
         Console.WriteLine("Would you like to save a quiz? Y or N?");
