@@ -9,19 +9,13 @@ public class FileOperations
     /// <param name="filePath">The file path where the serialized Quiz object will be saved.</param>
     public static void SaveQuiz(Quiz quiz, string filePath)
     {
-        try
-        {
+
             XmlSerializer serializer = new XmlSerializer(typeof(Quiz));
             using (StreamWriter writer = new StreamWriter(filePath))
             {
                 serializer.Serialize(writer, quiz);
             }
             Console.WriteLine("Quiz has been saved successfully.");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"An error occurred while saving the quiz: {ex.Message}");
-        }
     }
 
 
@@ -33,8 +27,7 @@ public class FileOperations
     /// <returns>A Quiz object reconstructed from the XML file.</returns>
     public static Quiz LoadQuiz(string filePath)
     {
-        try
-        {
+   
             XmlSerializer serializer = new XmlSerializer(typeof(Quiz));
             using (StreamReader reader = new StreamReader(filePath))
             {
@@ -42,19 +35,5 @@ public class FileOperations
                 Console.WriteLine("Quiz has been loaded successfully.");
                 return quiz;
             }
-        }
-        catch (FileNotFoundException)
-        {
-            Console.WriteLine("The file was not found.");
-        }
-        catch (UnauthorizedAccessException)
-        {
-            Console.WriteLine("Access to the file was denied.");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"An error occurred while loading the quiz: {ex.Message}");
-        }
-        return null;
     }
 }

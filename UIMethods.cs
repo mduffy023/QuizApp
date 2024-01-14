@@ -291,17 +291,11 @@ public class UIMethods
             string filePath = Console.ReadLine();
             filePath = filePath.Trim('"'); // Removes quotation marks from the start and end of the string
 
-            try
-            {
+   
+       
                 Quiz loadedQuiz = FileOperations.LoadQuiz(filePath);
                 Console.WriteLine("Quiz has been loaded.");
-                return loadedQuiz;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Quiz not loaded due to an error: {ex.Message}");
-                return null;
-            }
+                return loadedQuiz;                
         }
         else
         {
