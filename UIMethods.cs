@@ -120,7 +120,6 @@ public class UIMethods
 
         if (allQuestions.Count == 0)
         {
-            // Check if the user wants to cancel the operation by pressing Enter.
             Console.WriteLine("There are no questions to remove. Press any key to return to the main menu...");
             Console.ReadKey();
             return -1; // Return -1 to indicate no removal will take place.
@@ -132,17 +131,22 @@ public class UIMethods
         {
             string input = Console.ReadLine(); // Get user input after the prompt.
 
+            // Check if the user wants to cancel the operation by pressing Enter.
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return -1; // Return -1 to indicate cancellation.
+            }
+
             // Attempt to parse the input as an index number.
             bool isNumber = int.TryParse(input, out int index);
             if (isNumber && index >= 0 && index < allQuestions.Count)
             {
-                return index; // Return the valid index to remove the question.
+                return index; // Return the valid
             }
             else
             {
+                // Prompt again only if the input was invalid
                 Console.WriteLine("Invalid index. Please enter a number within the specified range or just press Enter to back out:");
-                Console.ReadKey();
-                return -1;
             }
         }
     }
