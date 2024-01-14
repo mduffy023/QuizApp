@@ -10,17 +10,6 @@ public class UIMethods
     Quiz quiz = new Quiz();
 
     /// <summary>
-    /// the method is used to 
-    /// allow UIMethods class use the 
-    /// functionalities provided by Logic class 
-    /// </summary>
-    /// <param name="logic">allows this class access to Logic class</param>
-    //  public UIMethods(Logic logic)
-    // {
-    //    this.logic = logic;
-    // }
-
-    /// <summary>
     /// display a welcome message to the user 
     /// </summary>
     public static void DisplayIntro()
@@ -189,10 +178,10 @@ public class UIMethods
     public static string GetAnswerFromUser(Question question)
     {
         Console.WriteLine(question.Query);
-       for (int i = 0; i < question.Choices.Count; i++)
-       {
+        for (int i = 0; i < question.Choices.Count; i++)
+        {
             Console.WriteLine($"{i + 1}. {question.Choices[i]}");
-       }
+        }
         Console.WriteLine("Enter your answer: ");
         return Console.ReadLine();
     }
@@ -213,34 +202,39 @@ public class UIMethods
     {
       Console.WriteLine($"Incorrect. The correct answer is: {string.Join(", ", question.Answers)}");
     }
-    
+
     /// <summary>
     /// gets the users choice for the question 
     /// </summary>
     /// <param name="question">choice of the question</param>
-    public static List<string> GetUserChoices(Question question)
+    public static List<string> GetUserAnswers(Question question)
     {
         Console.WriteLine(question.Query);
         for (int i = 0; i < question.Choices.Count; i++)
         {
             Console.WriteLine($"{i + 1}: {question.Choices[i]}");
         }
-
-        Console.WriteLine("Pick your choices. if more than one separat with , ");
+        Console.WriteLine("Enter the numbers corresponding to your answers, separated by commas (e.g., 1,4): ");
         string input = Console.ReadLine();
+        var indices = input.Split(',')
+                           .Select(s => s.Trim())
+                           .Where(s => int.TryParse(s, out int index) && index > 0 && index <= question.Choices.Count)
+                           .Select(s => int.Parse(s) - 1)
+                           .Distinct() // Ensure no duplicate indices
+                           .ToList();
 
-        List<string> userChoices = new List<string>();
-        userChoices = Console.ReadLine().Split(',').Select(chocie => chocie.Trim()).ToList();
+        List<string> userAnswers = indices.Select(index => question.Choices[index]).ToList();
 
-        return userChoices;
+        // Debugging line
+        Console.WriteLine("Translated User Answers: " + string.Join(", ", userAnswers));
 
+        return userAnswers;
     }
-
-    /// <summary>
-    /// Prompts the user to decide whether to save a quiz 
-    /// and handles the saving process.
-    /// </summary>
-    public static bool SaveQuizPrompt()
+        /// <summary>
+        /// Prompts the user to decide whether to save a quiz 
+        /// and handles the saving process.
+        /// </summary>
+        public static bool SaveQuizPrompt()
     {
         char userPrompt;
         Console.WriteLine("Would you like to save a quiz? Y or N?");
