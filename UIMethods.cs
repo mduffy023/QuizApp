@@ -229,6 +229,12 @@ public class UIMethods
         }
         while (true);
     }
+
+    /// <summary>
+    /// Prompts the user to enter the file path where they intend to save a quiz.
+    /// This method ensures any surrounding quotation marks are removed from the input path.
+    /// </summary>
+    /// <returns>A string representing the file path input by the user without surrounding quotation marks.</returns>
     public static string SaveFilePathFromUser()
     {
         Console.WriteLine("Enter the file path for loading the quiz:");
@@ -259,11 +265,13 @@ public class UIMethods
             }
         }
         while (true);
-    } 
+    }
+
     /// <summary>
-    /// 
+    /// Prompts the user to enter the file path where they intend to save a quiz.
+    /// This method ensures any surrounding quotation marks are removed from the input path.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>A string representing the file path input by the user without surrounding quotation marks.</returns>
     public static string GetFilePathFromUser()
     {
         Console.WriteLine("Enter the file path for loading the quiz:");
