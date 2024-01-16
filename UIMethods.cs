@@ -17,6 +17,13 @@ public class UIMethods
     {
         Console.WriteLine("Welcome to the Quiz Maker! ");
     }
+    public static void DisplayHowToCreateQuestions()
+    {
+        Console.WriteLine("enter a question e.g In Ancient Rome, how many days of the week were there?");
+        Console.WriteLine("then enter the Choices, it will be between 4 choices,e.g Five Six Eight Ten");
+        Console.WriteLine("then choice the answer e.g Eight ");
+        Console.WriteLine("if the question has more than one answer then do answer, answer2");
+    }
 
     /// <summary>
     /// displays a menu for the user 
@@ -77,6 +84,8 @@ public class UIMethods
     /// <returns>stores the user question </returns>
     public static Question GetNewQuestion()
     {
+        DisplayHowToCreateQuestions();
+
         string usersQuestion = PromptForNonEmptyInput("Enter the Question:");
 
         List<string> userChoices = new List<string>();
