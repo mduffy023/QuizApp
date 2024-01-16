@@ -237,7 +237,7 @@ public class UIMethods
     /// <returns>A string representing the file path input by the user without surrounding quotation marks.</returns>
     public static string SaveFilePathFromUser()
     {
-        Console.WriteLine("Enter the file path for loading the quiz:");
+        Console.WriteLine("\nEnter the file path for loading the quiz:");
         string filePath = Console.ReadLine();
         return filePath.Trim('"'); // Removes quotation marks from the start and end of the string
     }
@@ -274,7 +274,7 @@ public class UIMethods
     /// <returns>A string representing the file path input by the user without surrounding quotation marks.</returns>
     public static string GetFilePathFromUser()
     {
-        Console.WriteLine("Enter the file path for loading the quiz:");
+        Console.WriteLine("\nEnter the file path for loading the quiz:");
         string filePath = Console.ReadLine();
         return filePath.Trim('"'); // Removes quotation marks from the start and end of the string
     }
