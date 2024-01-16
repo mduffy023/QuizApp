@@ -88,6 +88,14 @@ public class UIMethods
 
         string usersQuestion = PromptForNonEmptyInput("Enter the Question:");
 
+        // Check if the usersQuestion is empty or null, return null if so
+        if (string.IsNullOrEmpty(usersQuestion))
+        {
+            Console.WriteLine("No question entered. Returning to the main menu...");
+            Console.ReadLine();
+            return null; // Return null to indicate no new question will be created.
+        }
+
         List<string> userChoices = new List<string>();
         for (int i = 0; i < CHOICELIMIT; i++)
         {
@@ -101,11 +109,17 @@ public class UIMethods
     }
 
     /// <summary>
-    /// Repeatedly prompts the user for input until a non-empty and non-whitespace string is provided.
-    /// This method ensures that the user cannot proceed without providing valid input.
+    /// Repeatedly prompts the user for input until a valid string is provided. 
+    /// This method is designed to prevent the user from proceeding without input, except when entering a question.
+    /// If the prompt is specifically for entering a question ("Enter the Question:"),
+    /// this method allows an empty input, enabling the user to return to the main menu by pressing Enter without typing anything.
+    /// In all other cases, the method will insist on a non-empty and non-whitespace string to ensure that valid input is provided.
     /// </summary>
     /// <param name="prompt">The message displayed to the user, instructing them what to input.</param>
-    /// <returns>A non-empty string input by the user.</returns>
+    /// <returns>
+    /// A valid string input by the user. If the prompt is for the question and the input is empty, 
+    /// the method returns an empty string to indicate the user's intention to return to the main menu.
+    /// </returns>
     private static string PromptForNonEmptyInput(string prompt)
     {
         string input;
@@ -113,9 +127,16 @@ public class UIMethods
         {
             Console.WriteLine(prompt);
             input = Console.ReadLine();
+
+            // Check if the prompt is for the question and allow an empty response in this case.
+            if (prompt == "Enter the Question:" && string.IsNullOrEmpty(input))
+            {
+                return input; // Will allow the empty string to be returned.
+            }
+
             if (string.IsNullOrWhiteSpace(input))
             {
-              Console.WriteLine("Input cannot be empty. Please try again.");
+                Console.WriteLine("Input cannot be empty. Please try again.");
             }
         } while (string.IsNullOrWhiteSpace(input));
 
