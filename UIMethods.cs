@@ -238,7 +238,7 @@ public static class UIMethods
     public static bool SaveQuizPrompt()
     {
         char userPrompt;
-        Console.WriteLine("Would you like to save a quiz? Y or N?");
+        Console.WriteLine($"Would you like to save a quiz? {YES} or {NO}?");
 
         do
         {
@@ -251,7 +251,7 @@ public static class UIMethods
             }
             else
             {
-                Console.WriteLine("\nInvalid input, please only answer with Y or N");
+                Console.WriteLine($"\nInvalid input, please only answer with {YES} or {NO}");
             }
         }
         while (true);
@@ -276,7 +276,7 @@ public static class UIMethods
     public static bool LoadQuizPrompt()
     {
         char userPrompt;
-        Console.WriteLine("Would you like to load a quiz? Y or N?");
+        Console.WriteLine($"Would you like to save a quiz? {YES} or {NO}?");
 
         do
         {
@@ -288,7 +288,7 @@ public static class UIMethods
                 return userPrompt == YES;
             }else
             {
-                Console.WriteLine("\nInvalid input, please only answer with Y or N"); 
+                Console.WriteLine($"\nInvalid input, please only answer with {YES} or {NO}");
             }
         }
         while (true);
