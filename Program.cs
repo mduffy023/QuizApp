@@ -20,7 +20,7 @@ namespace QuizApp
                 {
                     case MenuOptions.ADDQUESTION:
                         // add question logic 
-                       Question newQestion =  UIMethods.GetNewQuestion();
+                        Question newQestion =  UIMethods.GetNewQuestion();
                         quiz.AddQuestion(newQestion);
                         Console.Clear();
                         break;
@@ -28,8 +28,7 @@ namespace QuizApp
                         if (quiz.Questions.Count > 0)
                         {
                             int score = Logic.StartQuiz(quiz);
-                            UIMethods.DisplayScore(score);
-                            Console.WriteLine($"Your Score: {score}/{quiz.Questions.Count}");
+                            UIMethods.OutputScore(score , totalQuestions: quiz.Questions.Count);                         
                             Console.ReadKey(); // Wait for user input before clearing the screen
                             Console.Clear();
                         }

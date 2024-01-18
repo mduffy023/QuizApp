@@ -62,9 +62,14 @@ public static class UIMethods
     /// Displays the total score on the console.
     /// </summary>
     /// <param name="score">The score value to be displayed.</param>
-    public static void DisplayScore(int score)
+    /// <summary>
+    /// Displays the user's score in relation to the total number of questions.
+    /// </summary>
+    /// <param name="score">The score achieved by the user.</param>
+    /// <param name="totalQuestions">The total number of questions in the quiz.</param>
+    public static void OutputScore(int score, int totalQuestions)
     {
-        Console.WriteLine($"Total Score: {score}");
+        Console.WriteLine($"Your Score: {score}/{totalQuestions}");
     }
 
 
