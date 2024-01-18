@@ -1,17 +1,5 @@
-﻿public class Logic
+﻿public static class Logic
 {
-    private Quiz quiz;
-
-    /// <summary>
-    /// Initializes a new instance 
-    /// of the Logic class with a specified quiz.
-    /// </summary>
-    /// <param name="start">The Quiz object that will be used by this instance of Logic.</param>
-    public Logic(Quiz start)
-    {
-        quiz = start;
-    }
-
     /// <summary>
     /// Initiates the quiz-taking process by iterating over each question in the provided quiz.
     /// For each question, it prompts the user for an answer and checks if it is correct.

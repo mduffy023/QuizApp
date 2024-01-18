@@ -1,14 +1,11 @@
 ﻿using System.Diagnostics.Metrics;
 using static Menu;
 
-public class UIMethods
+public static class UIMethods
 {
     public const int CHOICELIMIT = 4;
     public const char YES = 'Y';
     public const char NO = 'N';
-
-    //private Logic logic;
-    Quiz quiz = new Quiz();
 
     /// <summary>
     /// display a welcome message to the user 
