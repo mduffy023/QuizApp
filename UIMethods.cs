@@ -72,6 +72,25 @@ public static class UIMethods
         Console.WriteLine($"Your Score: {score}/{totalQuestions}");
     }
 
+    /// <summary>
+    /// waits for the user to initiate a spain by pressing the Enter key
+    /// </summary>
+    public static void WaitForKeyPress()
+    {
+        Console.WriteLine();
+        Console.WriteLine("Press any key to start spin");
+        Console.WriteLine();
+        Console.ReadKey(true);
+    }
+
+    /// <summary>
+    /// waits for the user to initiate a spain by pressing the Enter key
+    /// </summary>
+    public static void ClearUserOutput()
+    {
+      Console.Clear();
+    }
+
 
     /// <summary>
     /// allows the user to make a new question

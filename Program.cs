@@ -22,22 +22,22 @@ namespace QuizApp
                         // add question logic 
                         Question newQestion =  UIMethods.GetNewQuestion();
                         quiz.AddQuestion(newQestion);
-                        Console.Clear();
+                        UIMethods.ClearUserOutput();
                         break;
                     case MenuOptions.StartQuiz:
                         if (quiz.Questions.Count > 0)
                         {
                             int score = Logic.StartQuiz(quiz);
-                            UIMethods.OutputScore(score , totalQuestions: quiz.Questions.Count);                         
-                            Console.ReadKey(); // Wait for user input before clearing the screen
-                            Console.Clear();
+                            UIMethods.OutputScore(score , totalQuestions: quiz.Questions.Count);
+                            UIMethods.WaitForKeyPress();
+                            UIMethods.ClearUserOutput();
                         }
                         else
                         {
                             Console.WriteLine("No quiz loaded or quiz is empty. Load or add questions to a quiz first.");
                             Console.WriteLine("Press any key to return to the menu...");
-                            Console.ReadKey();
-                            Console.Clear();
+                            UIMethods.WaitForKeyPress();
+                            UIMethods.ClearUserOutput();
                         }
                         break;
                     case MenuOptions.SAVEQUIZ:
@@ -82,7 +82,7 @@ namespace QuizApp
                         UIMethods.DisplayAllQuizQuestions(quiz);
                         int indexToDelete = UIMethods.RemoveQuestionFromQuiz(quiz);
                         quiz.RemoveQuestion(indexToDelete);
-                        Console.Clear();
+                        UIMethods.ClearUserOutput();
                         break;
                         case MenuOptions.EXIT:
                         isRunning = false;
