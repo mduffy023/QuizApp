@@ -144,7 +144,7 @@ public static class UIMethods
         }
 
         // Prompt for the correct answer indices
-        string correctAnswersIndicesInput = PromptForNonEmptyInput("Enter the number(s) of the correct answer(s), separated by comma, if multiple (e.g., 1,):");
+        string correctAnswersIndicesInput = PromptForNonEmptyInput("Enter the number(s) of the correct answer(s), separated by comma, if multiple (e.g., 1,4):");
         List<int> correctAnswerIndices = correctAnswersIndicesInput.Split(',').Select(a => int.Parse(a.Trim()) - 1).ToList();
 
         return new Question(usersQuestion, userChoices, correctAnswerIndices);
