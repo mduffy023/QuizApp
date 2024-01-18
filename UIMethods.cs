@@ -18,8 +18,9 @@ public static class UIMethods
     {
         Console.WriteLine("enter a question e.g In Ancient Rome, how many days of the week were there?");
         Console.WriteLine("then enter the Choices, it will be between 4 choices,e.g Five Six Eight Ten");
-        Console.WriteLine("then choice the answer e.g Eight ");
-        Console.WriteLine("if the question has more than one answer then do answer, answer2");
+        Console.WriteLine("then enter the choice of the answer  ");
+        Console.WriteLine("e.g answer is Eight. So what ever choie you place it in e.g choice 2 then put 2");
+        Console.WriteLine("if the question has more than one answer then do 1,2");
     }
 
     /// <summary>
