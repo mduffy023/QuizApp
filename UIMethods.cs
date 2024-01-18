@@ -91,6 +91,11 @@ public static class UIMethods
         Console.Clear();
     }
 
+    /// <summary>
+    /// Prompts the user for their answers to a given question, expects numeric input corresponding to choices.
+    /// </summary>
+    /// <param name="question">The Question object containing the query and choices.</param>
+    /// <returns>A list of indices representing the user's answer choices.</returns>
     public static List<int> GetUserAnswersIndices(Question question)
     {
         Console.WriteLine(question.Query);
@@ -100,38 +105,36 @@ public static class UIMethods
         }
         Console.WriteLine("Enter the numbers corresponding to your answers, separated by commas (e.g., 1,4):");
         string input = Console.ReadLine();
-        List<int> indices = input.Split(',')
-                                 .Select(s => s.Trim())
-                                 .Where(s => int.TryParse(s, out int index) && index > 0 && index <= question.Choices.Count)
-                                 .Select(s => int.Parse(s) - 1) // Convert to zero-based index
-                                 .ToList();
+        List<int> indices = input.Split(',').Select(s => s.Trim()).Where(s => int.TryParse(s, out int index) && index > 0 && index <= question.Choices.Count).Select(s => int.Parse(s) - 1).ToList();
 
         return indices;
     }
 
 
     /// <summary>
-    /// allows the user to make a new question
-    /// will ask them the question they like to enter 
-    /// the choice and the correct answer can be more than one
-    /// need to impelment some data handleing 
-    /// so if a question has been written then it 
-    /// shouldn't be allow to be written again 
-    /// probably needd to add a are you sure 
-    /// would you like to review your inputs 
+    /// Guides the user through creating a new question for the quiz.
+    /// The method first displays instructions on how to create a question, then prompts the user to input the question text.
+    /// If the user inputs an empty string, the process is aborted, and the method returns to the main menu.
+    /// Next, the user is asked to input a set of choices (answers) for the question, limited by a predefined number.
+    /// Finally, the user is prompted to specify the correct answers by entering their indices, separated by commas.
     /// </summary>
-    /// <returns>stores the user question </returns>
+    /// <returns>
+    /// A new Question object constructed with user-provided question text, choices, and correct answer indices.
+    /// If the user decides not to enter a question, the method returns null to indicate no question was created.
+    /// </returns>
     public static Question GetNewQuestion()
     {
         DisplayHowToCreateQuestions();
 
-        string usersQuestion = PromptForNonEmptyInput("Enter the Question:");
-        if (string.IsNullOrEmpty(usersQuestion))
+        string usersQuestion;
+        do
         {
-            Console.WriteLine("No question entered. Returning to the main menu...");
-            Console.ReadLine();
-            return null; // Return null to indicate no new question will be created.
-        }
+            usersQuestion = PromptForNonEmptyInput("Enter the Question:");
+            if (string.IsNullOrWhiteSpace(usersQuestion))
+            {
+                Console.WriteLine("The question cannot be empty. Please enter a valid question.");
+            }
+        } while (string.IsNullOrWhiteSpace(usersQuestion));
 
         List<string> userChoices = new List<string>();
         for (int i = 0; i < CHOICELIMIT; i++)
@@ -142,10 +145,7 @@ public static class UIMethods
 
         // Prompt for the correct answer indices
         string correctAnswersIndicesInput = PromptForNonEmptyInput("Enter the number(s) of the correct answer(s), separated by comma, if multiple (e.g., 1,):");
-        List<int> correctAnswerIndices = correctAnswersIndicesInput
-                                                .Split(',')
-                                                .Select(a => int.Parse(a.Trim()) - 1) // Subtract 1 to convert to zero-based index
-                                                .ToList();
+        List<int> correctAnswerIndices = correctAnswersIndicesInput.Split(',').Select(a => int.Parse(a.Trim()) - 1).ToList();
 
         return new Question(usersQuestion, userChoices, correctAnswerIndices);
     }

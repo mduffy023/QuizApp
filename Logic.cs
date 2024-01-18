@@ -2,13 +2,10 @@
 public static class Logic
 {
     /// <summary>
-    /// Initiates the quiz-taking process by iterating over each question in the provided quiz.
-    /// For each question, it prompts the user for an answer and checks if it is correct.
-    /// If the user's answer is correct, an appropriate message is displayed and the score is incremented.
-    /// If the answer is incorrect, a different message indicating the correct answer is displayed.
+    /// Executes the quiz, iterating through each question and validating the user's answers.
     /// </summary>
-    /// <param name="quiz">The Quiz object containing the questions to be answered.</param>
-    /// <returns>The total score achieved by the user after answering all questions.</returns>
+    /// <param name="quiz">The Quiz object containing all questions.</param>
+    /// <returns>The total score obtained by the user.</returns>
     public static int StartQuiz(Quiz quiz)
     {
         int score = 0;
