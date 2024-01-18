@@ -21,7 +21,7 @@ public class Question
     /// <summary>
     /// A list of correct answers for the question. This can have one or more entries.
     /// </summary>
-    public List<string> Answers { get; set; } = new List<string>();
+    public List<int> correctAnswers { get; set; } = new List<int>();
 
     /// <summary>
     /// Constructor for creating a new Question object with specified query, choices, and answers.
@@ -29,11 +29,11 @@ public class Question
     /// <param name="query">The main text of the question.</param>
     /// <param name="choices">A list of choices related to the question.</param>
     /// <param name="answers">A list of correct answers for the question.</param>
-    public Question(string query, List<string> choices, List<string> answers)
+    public Question(string query, List<string> choices, List<int> answers)
     {
         _query = query;
         Choices = choices ?? new List<string>(); // Ensure choices is not null
-        Answers = answers ?? new List<string>(); // Ensure answers is not null
+        correctAnswers = answers ?? new List<int>(); // Ensure answers is not null
     }
 
     public Question()

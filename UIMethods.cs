@@ -53,7 +53,7 @@ public static class UIMethods
             else
             {
                 Console.Clear();
-                Console.WriteLine("Invaild input. Please enter a number between 1 or 6 ");          
+                Console.WriteLine("Invaild input. Please enter a number between 1 or 6 ");
             }
         }
     }
@@ -78,7 +78,7 @@ public static class UIMethods
     public static void WaitForKeyPress()
     {
         Console.WriteLine();
-        Console.WriteLine("Press any key to start spin");
+        Console.WriteLine("Press any key to return to main menu");
         Console.WriteLine();
         Console.ReadKey(true);
     }
@@ -88,7 +88,25 @@ public static class UIMethods
     /// </summary>
     public static void ClearUserOutput()
     {
-      Console.Clear();
+        Console.Clear();
+    }
+
+    public static List<int> GetUserAnswersIndices(Question question)
+    {
+        Console.WriteLine(question.Query);
+        for (int i = 0; i < question.Choices.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {question.Choices[i]}");
+        }
+        Console.WriteLine("Enter the numbers corresponding to your answers, separated by commas (e.g., 1,4):");
+        string input = Console.ReadLine();
+        List<int> indices = input.Split(',')
+                                 .Select(s => s.Trim())
+                                 .Where(s => int.TryParse(s, out int index) && index > 0 && index <= question.Choices.Count)
+                                 .Select(s => int.Parse(s) - 1) // Convert to zero-based index
+                                 .ToList();
+
+        return indices;
     }
 
 
@@ -108,8 +126,6 @@ public static class UIMethods
         DisplayHowToCreateQuestions();
 
         string usersQuestion = PromptForNonEmptyInput("Enter the Question:");
-
-        // Check if the usersQuestion is empty or null, return null if so
         if (string.IsNullOrEmpty(usersQuestion))
         {
             Console.WriteLine("No question entered. Returning to the main menu...");
@@ -120,13 +136,18 @@ public static class UIMethods
         List<string> userChoices = new List<string>();
         for (int i = 0; i < CHOICELIMIT; i++)
         {
-            string choice = PromptForNonEmptyInput($"Enter Choice { i + 1}:");
+            string choice = PromptForNonEmptyInput($"Enter Choice {i + 1}:");
             userChoices.Add(choice);
         }
-        string correctAnswersInput = PromptForNonEmptyInput("Enter the Correct answer, separated by comma, if multiple:");
-        List<string> correctAnswers = correctAnswersInput.Split(',').Select(a => a.Trim()).ToList();
 
-        return new Question(usersQuestion, userChoices, correctAnswers);
+        // Prompt for the correct answer indices
+        string correctAnswersIndicesInput = PromptForNonEmptyInput("Enter the number(s) of the correct answer(s), separated by comma, if multiple (e.g., 1,):");
+        List<int> correctAnswerIndices = correctAnswersIndicesInput
+                                                .Split(',')
+                                                .Select(a => int.Parse(a.Trim()) - 1) // Subtract 1 to convert to zero-based index
+                                                .ToList();
+
+        return new Question(usersQuestion, userChoices, correctAnswerIndices);
     }
 
     /// <summary>
@@ -222,12 +243,12 @@ public static class UIMethods
         }
     }
 
-        /// <summary>
-        /// Displays a message to the user indicating that the provided answer is correct.
-        /// </summary>
-        public static void OutputRightAnswerMessage()
+    /// <summary>
+    /// Displays a message to the user indicating that the provided answer is correct.
+    /// </summary>
+    public static void OutputRightAnswerMessage()
     {
-      Console.WriteLine("That is correct!");
+        Console.WriteLine("That is correct!");
     }
 
     /// <summary>
@@ -236,7 +257,7 @@ public static class UIMethods
     /// <param name="question">The Question object containing the correct answer(s) to display to the user.</param>
     public static void OutputWrongAnswerMessage(Question question)
     {
-      Console.WriteLine($"Incorrect. The correct answer is: {string.Join(", ", question.Answers)}");
+        Console.WriteLine($"Incorrect. The correct answer is: {string.Join(", ", question.correctAnswers)}");
     }
 
     /// <summary>
@@ -306,11 +327,12 @@ public static class UIMethods
         {
             userPrompt = Console.ReadKey().KeyChar;
             userPrompt = char.ToUpper(userPrompt);
-            
-            if(userPrompt == YES || userPrompt == NO)
+
+            if (userPrompt == YES || userPrompt == NO)
             {
                 return userPrompt == YES;
-            }else
+            }
+            else
             {
                 Console.WriteLine($"\nInvalid input, please only answer with {YES} or {NO}");
             }

@@ -1,5 +1,5 @@
 ﻿[Serializable]
-public class Quiz 
+public class Quiz
 {
     /// <summary>
     /// A list to store the questions.

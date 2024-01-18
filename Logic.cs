@@ -1,4 +1,5 @@
-﻿public static class Logic
+﻿
+public static class Logic
 {
     /// <summary>
     /// Initiates the quiz-taking process by iterating over each question in the provided quiz.
@@ -13,8 +14,20 @@
         int score = 0;
         foreach (var question in quiz.Questions)
         {
-            string userAnswer = UIMethods.GetAnswerFromUser(question);
-            if (question.Answers.Contains(userAnswer, StringComparer.InvariantCultureIgnoreCase))
+            // Get the user's answers as a list of indices (as integers)
+            List<int> userAnswersIndices = UIMethods.GetUserAnswersIndices(question);
+
+            // Convert the indices to the actual answers for comparison
+            List<string> userAnswers = userAnswersIndices.Select(index => question.Choices[index]).ToList();
+
+            // Convert correct answer indices to the actual answers for comparison
+            List<string> correctAnswers = question.correctAnswers.Select(index => question.Choices[index]).ToList();
+
+            // Now use SetEquals to compare the sets of answers
+            var correctAnswersSet = new HashSet<string>(correctAnswers, StringComparer.InvariantCultureIgnoreCase);
+            var userAnswersSet = new HashSet<string>(userAnswers, StringComparer.InvariantCultureIgnoreCase);
+
+            if (correctAnswersSet.SetEquals(userAnswersSet))
             {
                 UIMethods.OutputRightAnswerMessage();
                 score++;
