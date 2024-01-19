@@ -9,7 +9,7 @@ public static class Logic
     public static int StartQuiz(Quiz quiz)
     {
         int score = 0;
-        foreach (var question in quiz.Questions)
+        foreach (Question question in quiz.Questions)
         {
             // Get the user's answers as a list of indices (as integers)
             List<int> userAnswersIndices = UIMethods.GetUserAnswersIndices(question);
@@ -20,9 +20,9 @@ public static class Logic
             // Convert correct answer indices to the actual answers for comparison
             List<string> correctAnswers = question.correctAnswers.Select(index => question.Choices[index]).ToList();
 
-            // Now use SetEquals to compare the sets of answers
-            var correctAnswersSet = new HashSet<string>(correctAnswers, StringComparer.InvariantCultureIgnoreCase);
-            var userAnswersSet = new HashSet<string>(userAnswers, StringComparer.InvariantCultureIgnoreCase);
+            // SetEquals to compare the sets of answers
+            HashSet<string> correctAnswersSet = new HashSet<string>(correctAnswers, StringComparer.InvariantCultureIgnoreCase);
+            HashSet<string> userAnswersSet = new HashSet<string>(userAnswers, StringComparer.InvariantCultureIgnoreCase);
 
             if (correctAnswersSet.SetEquals(userAnswersSet))
             {
