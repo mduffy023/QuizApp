@@ -113,20 +113,35 @@ public static class UIMethods
 
 
     /// <summary>
-    /// Guides the user through creating a new question for the quiz.
-    /// The method first displays instructions on how to create a question, then prompts the user to input the question text.
-    /// If the user inputs an empty string, the process is aborted, and the method returns to the main menu.
-    /// Next, the user is asked to input a set of choices (answers) for the question, limited by a predefined number.
-    /// Finally, the user is prompted to specify the correct answers by entering their indices, separated by commas.
+    /// Creates a new question by gathering input for the question text, choices, and correct answers.
     /// </summary>
-    /// <returns>
-    /// A new Question object constructed with user-provided question text, choices, and correct answer indices.
-    /// If the user decides not to enter a question, the method returns null to indicate no question was created.
-    /// </returns>
-    public static Question GetNewQuestion()
+    /// <returns>A new Question object with the provided details.</returns>
+    public static void GetNewQuestion(Action<Question> addQuestionCallback)
     {
         DisplayHowToCreateQuestions();
 
+        string questionText = GetQuestionText();
+        if (!string.IsNullOrWhiteSpace(questionText))
+        {
+            List<string> choices = GetQuestionChoices();
+            List<int> correctAnswerIndices = GetCorrectAnswerIndices(choices.Count);
+
+            Question newQuestion = new Question(questionText, choices, correctAnswerIndices);
+            addQuestionCallback(newQuestion);
+            Console.WriteLine("Question added successfully.");
+        }
+        else
+        {
+            Console.WriteLine("Question creation cancelled.");
+        }
+    }
+
+    /// <summary>
+    /// Prompts the user to enter the text for a question and ensures it is not empty.
+    /// </summary>
+    /// <returns>The question text entered by the user.</returns>
+    private static string GetQuestionText()
+    {
         string usersQuestion;
         do
         {
@@ -137,19 +152,34 @@ public static class UIMethods
             }
         } while (string.IsNullOrWhiteSpace(usersQuestion));
 
+        return usersQuestion;
+    }
+
+    /// <summary>
+    /// Collects a predetermined number of choices from the user for a question.
+    /// </summary>
+    /// <returns>A list of choices for the question.</returns>
+    private static List<string> GetQuestionChoices()
+    {
         List<string> userChoices = new List<string>();
         for (int i = 0; i < CHOICELIMIT; i++)
         {
             string choice = PromptForNonEmptyInput($"Enter Choice {i + 1}:");
             userChoices.Add(choice);
         }
-
-        // Prompt for the correct answer indices
-        string correctAnswersIndicesInput = PromptForNonEmptyInput("Enter the number(s) of the correct answer(s), separated by comma, if multiple (e.g., 1,4):");
-        List<int> correctAnswerIndices = correctAnswersIndicesInput.Split(',').Select(a => int.Parse(a.Trim()) - 1).ToList();
-
-        return new Question(usersQuestion, userChoices, correctAnswerIndices);
+        return userChoices;
     }
+
+    /// <summary>
+    /// Prompts the user to enter the indices of the correct answers and validates them.
+    /// </summary>
+    /// <param name="choicesCount">The number of choices available for the question.</param>
+    private static List<int> GetCorrectAnswerIndices(int choicesCount)
+    {
+        string correctAnswersIndicesInput = PromptForNonEmptyInput("Enter the number(s) of the correct answer(s), separated by comma, if multiple (e.g., 1,4):");
+        return correctAnswersIndicesInput.Split(',').Select(a => int.Parse(a.Trim()) - 1) .Where(index => index >= 0 && index < choicesCount).Distinct().ToList();
+    }
+
 
     /// <summary>
     /// Repeatedly prompts the user for input until a valid string is provided. 

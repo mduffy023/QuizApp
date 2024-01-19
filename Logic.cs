@@ -35,5 +35,5 @@ public static class Logic
             }
         }
         return score;
-    }
+    }  
 }
