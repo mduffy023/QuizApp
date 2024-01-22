@@ -311,7 +311,7 @@ public static class UIMethods
     /// Prompts the user to decide whether to save a quiz 
     /// and handles the saving process.
     /// </summary>
-    public static bool SaveQuizPrompt()
+    public static void SaveQuizPrompt(Quiz quiz)
     {
         char userPrompt;
         Console.WriteLine($"Would you like to save a quiz? {YES} or {NO}?");
@@ -321,9 +321,36 @@ public static class UIMethods
             userPrompt = Console.ReadKey().KeyChar;
             userPrompt = char.ToUpper(userPrompt);
 
-            if (userPrompt == YES || userPrompt == NO)
+            if (userPrompt == YES)
             {
-                return userPrompt == YES;
+                string filePath = SaveFilePathFromUser(); // Get the file path from the user
+                if (File.Exists(filePath))
+                {
+                    Console.WriteLine("\nFile already exists. Overwrite? Y or N");
+                    char overwritePrompt = Console.ReadKey().KeyChar;
+                    if (char.ToUpper(overwritePrompt) == YES)
+                    {
+                        FileOperations.SaveQuiz(quiz, filePath);
+                        Console.WriteLine("\nQuiz has been saved.");
+                        return;
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nOverwrite cancelled. Returning to menu.");
+                        return;
+                    }
+                }
+                else
+                {
+                    FileOperations.SaveQuiz(quiz, filePath);
+                    Console.WriteLine("\nQuiz has been saved.");
+                    return;
+                }
+            }
+            else if (userPrompt == NO)
+            {
+                Console.WriteLine("\nQuiz saving cancelled.");
+                return;
             }
             else
             {
@@ -346,22 +373,53 @@ public static class UIMethods
     }
 
     /// <summary>
-    /// Prompts the user to decide whether to load 
-    /// a quiz and handles the loading process.
+    /// Prompts the user to decide whether to load a quiz and then handles the loading process.
+    /// This method first asks the user if they wish to load a quiz. If the user responds YES ('Y'),
+    /// it then prompts for the file path, validates the file's existence, and loads the quiz from the file.
+    /// If the file doesn't exist, it notifies the user and returns null. 
+    /// If the user responds NO ('N'), it cancels the loading process and returns null.
+    /// The method also handles invalid inputs by asking the user to retry.
     /// </summary>
-    public static bool LoadQuizPrompt()
+    /// <returns>
+    /// The loaded Quiz object if the file exists and the user opts to load the quiz; otherwise, null.
+    /// </returns>
+    public static Quiz LoadQuizPrompt()
     {
         char userPrompt;
-        Console.WriteLine($"Would you like to save a quiz? {YES} or {NO}?");
+        Console.WriteLine($"Would you like to load a quiz? {YES} or {NO}?");
 
         do
         {
             userPrompt = Console.ReadKey().KeyChar;
             userPrompt = char.ToUpper(userPrompt);
 
-            if (userPrompt == YES || userPrompt == NO)
+            if (userPrompt == YES)
             {
-                return userPrompt == YES;
+                Console.WriteLine("\nEnter the file path for loading the quiz:");
+                string filePath = Console.ReadLine();
+                filePath = filePath.Trim('"').Trim(); // Removes quotation marks and extra spaces
+
+                Console.WriteLine($"Attempting to load from path: {filePath}"); // Debugging line
+
+                try
+                {
+                    if (!File.Exists(filePath))
+                    {
+                        Console.WriteLine("File not found. Please ensure the file path is correct.");
+                        return null;
+                    }
+                    return FileOperations.LoadQuiz(filePath);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Failed to load the quiz: {ex.Message}");
+                    return null;
+                }
+            }
+            else if (userPrompt == NO)
+            {
+                Console.WriteLine("\nQuiz loading cancelled.");
+                return null;
             }
             else
             {

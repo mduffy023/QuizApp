@@ -41,39 +41,11 @@ namespace QuizApp
                         break;
                     case MenuOptions.SAVEQUIZ:
                         // save quiz logic
-                        if (UIMethods.SaveQuizPrompt())
-                        {
-                            string filePath = UIMethods.SaveFilePathFromUser();
-                            FileOperations.SaveQuiz(quiz, filePath);
-                            Console.WriteLine("Quiz has been saved.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Quiz saving cancelled.");
-                        }
-                        Console.Clear();
+                        UIMethods.SaveQuizPrompt(quiz);
                         break;
                     case MenuOptions.LOADQUIZ:
                         // load quiz logic
-                        if (UIMethods.LoadQuizPrompt())
-                        {
-                            string filePath = UIMethods.GetFilePathFromUser();
-
-                            // Check if the file exists before trying to load
-                            if (File.Exists(filePath))
-                            {
-                                quiz = FileOperations.LoadQuiz(filePath);
-                                Console.WriteLine("Quiz has been loaded.");
-                            }
-                            else
-                            {
-                                Console.WriteLine("File not found. Please ensure the file path is correct.");
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Quiz loading cancelled.");
-                        }
+                        quiz = UIMethods.LoadQuizPrompt();
                         Console.Clear();
                         break;
                     case MenuOptions.REMOVEQUESTION:
