@@ -16,7 +16,7 @@ public class Question
     /// <summary>
     /// A list of potential choices or options associated with the question.
     /// </summary>
-    public List<string> Choices{ get; set; } = new List<string>();
+    public List<string> Choices { get; set; } = new List<string>();
 
     /// <summary>
     /// A list of correct answers for the question. This can have one or more entries.

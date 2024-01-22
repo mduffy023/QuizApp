@@ -177,7 +177,7 @@ public static class UIMethods
     private static List<int> GetCorrectAnswerIndices(int choicesCount)
     {
         string correctAnswersIndicesInput = PromptForNonEmptyInput("Enter the number(s) of the correct answer(s), separated by comma, if multiple (e.g., 1,4):");
-        return correctAnswersIndicesInput.Split(',').Select(a => int.Parse(a.Trim()) - 1) .Where(index => index >= 0 && index < choicesCount).Distinct().ToList();
+        return correctAnswersIndicesInput.Split(',').Select(a => int.Parse(a.Trim()) - 1).Where(index => index >= 0 && index < choicesCount).Distinct().ToList();
     }
 
 

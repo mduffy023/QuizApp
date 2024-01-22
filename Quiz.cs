@@ -6,6 +6,23 @@ public class Quiz
     /// </summary>
     public List<Question> Questions { get; set; } = new List<Question>();
 
+
+    /// <summary>
+    /// Retrieves a random question from the quiz.
+    /// </summary>
+    /// <returns>A random Question object from the quiz, or null if there are no questions.</returns>
+    public Question GetRandomQuestion()
+    {
+        if (Questions.Count == 0)
+        {
+            return null; // No questions in the quiz
+        }
+
+        Random random = new Random();
+        int randomIndex = random.Next(Questions.Count);
+        return Questions[randomIndex];
+    }
+
     /// <summary>
     /// Adds a new question to the list of questions.
     /// </summary>

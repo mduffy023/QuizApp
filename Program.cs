@@ -27,7 +27,7 @@ namespace QuizApp
                         if (quiz.Questions.Count > 0)
                         {
                             int score = Logic.StartQuiz(quiz);
-                            UIMethods.OutputScore(score , totalQuestions: quiz.Questions.Count);
+                            UIMethods.OutputScore(score, totalQuestions: quiz.Questions.Count);
                             UIMethods.WaitForKeyPress();
                             UIMethods.ClearUserOutput();
                         }
@@ -83,7 +83,7 @@ namespace QuizApp
                         quiz.RemoveQuestion(indexToDelete);
                         UIMethods.ClearUserOutput();
                         break;
-                        case MenuOptions.EXIT:
+                    case MenuOptions.EXIT:
                         isRunning = false;
                         Console.Clear();
                         break;

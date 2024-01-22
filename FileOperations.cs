@@ -10,12 +10,12 @@ public class FileOperations
     public static void SaveQuiz(Quiz quiz, string filePath)
     {
 
-            XmlSerializer serializer = new XmlSerializer(typeof(Quiz));
-            using (StreamWriter writer = new StreamWriter(filePath))
-            {
-                serializer.Serialize(writer, quiz);
-            }
-            Console.WriteLine("Quiz has been saved successfully.");
+        XmlSerializer serializer = new XmlSerializer(typeof(Quiz));
+        using (StreamWriter writer = new StreamWriter(filePath))
+        {
+            serializer.Serialize(writer, quiz);
+        }
+        Console.WriteLine("Quiz has been saved successfully.");
     }
 
 
@@ -27,12 +27,12 @@ public class FileOperations
     /// <returns>A Quiz object reconstructed from the XML file.</returns>
     public static Quiz LoadQuiz(string filePath)
     {
-            XmlSerializer serializer = new XmlSerializer(typeof(Quiz));
-            using (StreamReader reader = new StreamReader(filePath))
-            {
-                Quiz quiz = (Quiz)serializer.Deserialize(reader);
-                Console.WriteLine("Quiz has been loaded successfully.");
-                return quiz;
-            }
+        XmlSerializer serializer = new XmlSerializer(typeof(Quiz));
+        using (StreamReader reader = new StreamReader(filePath))
+        {
+            Quiz quiz = (Quiz)serializer.Deserialize(reader);
+            Console.WriteLine("Quiz has been loaded successfully.");
+            return quiz;
+        }
     }
 }
