@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.Metrics;
-using static Menu;
+﻿using static Menu;
 
 public static class UIMethods
 {
@@ -74,7 +73,8 @@ public static class UIMethods
     }
 
     /// <summary>
-    /// waits for the user to initiate a spain by pressing the Enter key
+    /// waits for the user to initiate by pressing the Enter key
+    /// retruns to main menu 
     /// </summary>
     public static void WaitForKeyPress()
     {
@@ -82,13 +82,6 @@ public static class UIMethods
         Console.WriteLine("Press any key to return to main menu");
         Console.WriteLine();
         Console.ReadKey(true);
-    }
-
-    /// <summary>
-    /// waits for the user to initiate a spain by pressing the Enter key
-    /// </summary>
-    public static void ClearUserOutput()
-    {
         Console.Clear();
     }
 
@@ -292,6 +285,15 @@ public static class UIMethods
     }
 
     /// <summary>
+    /// displays no quiz loaded or is empty 
+    /// </summary>
+    public static void noQuizLoaded()
+    {
+        Console.WriteLine("No quiz loaded or quiz is empty. Load or add questions to a quiz first.");
+        Console.WriteLine("Press any key to return to the menu...");
+    }
+
+    /// <summary>
     /// Prompts the user with a question and its possible choices, then reads the user's answer from the console.
     /// </summary>
     /// <param name="question">The Question object containing the query and choices to present to the user.</param>
@@ -313,51 +315,24 @@ public static class UIMethods
     /// </summary>
     public static void SaveQuizPrompt(Quiz quiz)
     {
-        char userPrompt;
         Console.WriteLine($"Would you like to save a quiz? {YES} or {NO}?");
+        char userPrompt = Console.ReadKey().KeyChar;
+        userPrompt = char.ToUpper(userPrompt);
 
-        do
+        if (userPrompt == YES)
         {
-            userPrompt = Console.ReadKey().KeyChar;
-            userPrompt = char.ToUpper(userPrompt);
-
-            if (userPrompt == YES)
-            {
-                string filePath = SaveFilePathFromUser(); // Get the file path from the user
-                if (File.Exists(filePath))
-                {
-                    Console.WriteLine("\nFile already exists. Overwrite? Y or N");
-                    char overwritePrompt = Console.ReadKey().KeyChar;
-                    if (char.ToUpper(overwritePrompt) == YES)
-                    {
-                        FileOperations.SaveQuiz(quiz, filePath);
-                        Console.WriteLine("\nQuiz has been saved.");
-                        return;
-                    }
-                    else
-                    {
-                        Console.WriteLine("\nOverwrite cancelled. Returning to menu.");
-                        return;
-                    }
-                }
-                else
-                {
-                    FileOperations.SaveQuiz(quiz, filePath);
-                    Console.WriteLine("\nQuiz has been saved.");
-                    return;
-                }
-            }
-            else if (userPrompt == NO)
-            {
-                Console.WriteLine("\nQuiz saving cancelled.");
-                return;
-            }
-            else
+            string filePath = SaveFilePathFromUser();
+            FileOperations.CheckAndSaveQuiz(quiz, filePath);
+        }
+   
+        else if (userPrompt == NO)
+        {
+            Console.WriteLine("\nQuiz saving cancelled.");
+        }  
+        else
             {
                 Console.WriteLine($"\nInvalid input, please only answer with {YES} or {NO}");
             }
-        }
-        while (true);
     }
 
     /// <summary>
@@ -383,50 +358,25 @@ public static class UIMethods
     /// <returns>
     /// The loaded Quiz object if the file exists and the user opts to load the quiz; otherwise, null.
     /// </returns>
-    public static Quiz LoadQuizPrompt()
+    public static void LoadQuizPrompt(Quiz quiz)
     {
-        char userPrompt;
         Console.WriteLine($"Would you like to load a quiz? {YES} or {NO}?");
+        char userPrompt = Console.ReadKey().KeyChar;
+        userPrompt = char.ToUpper(userPrompt);
 
-        do
+        if (userPrompt == YES)
         {
-            userPrompt = Console.ReadKey().KeyChar;
-            userPrompt = char.ToUpper(userPrompt);
-
-            if (userPrompt == YES)
-            {
-                Console.WriteLine("\nEnter the file path for loading the quiz:");
-                string filePath = Console.ReadLine();
-                filePath = filePath.Trim('"').Trim(); // Removes quotation marks and extra spaces
-
-                Console.WriteLine($"Attempting to load from path: {filePath}"); // Debugging line
-
-                try
-                {
-                    if (!File.Exists(filePath))
-                    {
-                        Console.WriteLine("File not found. Please ensure the file path is correct.");
-                        return null;
-                    }
-                    return FileOperations.LoadQuiz(filePath);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Failed to load the quiz: {ex.Message}");
-                    return null;
-                }
-            }
-            else if (userPrompt == NO)
-            {
-                Console.WriteLine("\nQuiz loading cancelled.");
-                return null;
-            }
-            else
-            {
-                Console.WriteLine($"\nInvalid input, please only answer with {YES} or {NO}");
-            }
+            string filePath = GetFilePathFromUser();
+            FileOperations.CheckAndLoadQuiz(quiz, filePath);
         }
-        while (true);
+        else if (userPrompt == NO)
+        {
+            Console.WriteLine("\nQuiz loading cancelled.");
+        }
+        else
+        {
+            Console.WriteLine($"\nInvalid input, please only answer with {YES} or {NO}");
+        }
     }
 
     /// <summary>

@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 public static class Logic
 {
     /// <summary>
@@ -35,5 +37,26 @@ public static class Logic
             }
         }
         return score;
+    }
+
+    /// <summary>
+    /// Randomizes the order of questions in a given list.
+    /// </summary>
+    /// <param name="questions">A list of Question objects to be randomized.</param>
+    /// <returns>A List of Question objects in a randomized order.</returns>
+
+    public static List<Question> RandomizeQuestions(List<Question> questions)
+    {
+        Random range = new Random();
+        int question = questions.Count;
+        while (question > 1)
+        {
+            question--;
+            int rngQuestion = range.Next(question + 1);
+            Question value = questions[rngQuestion];
+            questions[rngQuestion] = questions[question];
+            questions[question] = value;
+        }
+        return questions;
     }
 }
